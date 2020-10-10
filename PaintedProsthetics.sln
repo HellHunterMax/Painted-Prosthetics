@@ -25,6 +25,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PP.Web.Client", "PP.Web.Cli
 		VWDPort = "56912"
 		SlnRelativePath = "PP.Web.Client\"
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{E50136D3-DA5B-4822-94B3-D57AC8AE16D6} = {E50136D3-DA5B-4822-94B3-D57AC8AE16D6}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
