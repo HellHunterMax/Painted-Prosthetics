@@ -9,6 +9,6 @@ namespace PP.Web.API.Model
         public Artist Artist { get; set; }
         public DateTime AddDate { get; set; }
         public int Likes { get; set; }
-        public string Url { get; set; }
+        public string Uri { get; set; }
     }
 }
