@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PP.Web.API.Data;
 
 namespace PP.Web.Api
 {
@@ -26,6 +27,8 @@ namespace PP.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IImageRepository, MockImageRepository>();
 
         }
 

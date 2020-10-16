@@ -17,7 +17,6 @@ namespace PP.Web.API.Controllers
             _imageRepository = imageRepository;
         }
 
-
         //Get api/Images
         [HttpGet]
         public ActionResult<IEnumerable<Image>> GetAllImages()
