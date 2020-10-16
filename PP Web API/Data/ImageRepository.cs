@@ -4,7 +4,7 @@ using PP.Web.API.Model;
 
 namespace PP.Web.API.Data
 {
-    public class ImagesRepository : IImageRepository
+    public class ImageRepository : IImageRepository
     {
         public Image GetImage(int id)
         {
