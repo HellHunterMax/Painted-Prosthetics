@@ -32,7 +32,7 @@ namespace PP.Web.Api
 
             services.AddControllers();
 
-            services.AddScoped<IImageRepository, MockImageRepository>();
+            services.AddScoped<IImageRepository, SqlImageRepository>();
 
         }
 
