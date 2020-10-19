@@ -13,5 +13,13 @@ namespace PP.Web.API.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<Artist> Artists { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Image>()
+            .HasOne<Artist>(s => s.Artist)
+            .WithMany(g => g.Images)
+            .HasForeignKey(s => s.ArtistId);
+        }
+
     }
 }

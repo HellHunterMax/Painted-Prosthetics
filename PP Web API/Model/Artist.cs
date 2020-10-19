@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PP.Web.API.Model
 {
     public class Artist
     {
         [Key]
-        public int Id { get; set; }
+        public int ArtistId { get; set; }
 
         [Required]
         public string Name { get; set; }

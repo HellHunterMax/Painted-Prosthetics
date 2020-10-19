@@ -8,13 +8,15 @@ namespace PP.Web.API.Model
     {
         [Key]
         [Column(Order = 1)]
-        public int Id { get; set; }
+        public int ImageId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        [Column(Order = 2)]
-        [Key, ForeignKey("Artist")]
+
+        public int ArtistId { get; set; }
+
+        [Required]
         public Artist Artist { get; set; }
 
         [Required]
