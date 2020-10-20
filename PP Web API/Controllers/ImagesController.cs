@@ -21,7 +21,7 @@ namespace PP.Web.API.Controllers
             _mapper = mapper;
         }
 
-        //Get api/Images
+        //Get api/images
         [HttpGet]
         public ActionResult<IEnumerable<ImageReadDto>> GetAllImages()
         {
@@ -31,8 +31,8 @@ namespace PP.Web.API.Controllers
             return Ok(_mapper.Map<IEnumerable<ImageReadDto>>(imagesItems));
         }
 
-        //Get api/Images/id
-        [HttpGet("{id}")]
+        //Get api/images/id
+        [HttpGet("{id}", Name = "GetImageId")]
         public ActionResult<ImageReadDto> GetImageId(int id)
         {
             var imageItem = _imageRepository.GetImage(id);
@@ -42,6 +42,19 @@ namespace PP.Web.API.Controllers
                 return Ok(_mapper.Map<ImageReadDto>(imageItem));
             }
             return NotFound();
+        }
+
+        //POST api/images
+        [HttpPost]
+        public ActionResult<ImageReadDto> CreateImage(ImageCreateDto imageCreateDto)
+        {
+            var image = _mapper.Map<Image>(imageCreateDto);
+            _imageRepository.CreateImage(image);
+            _imageRepository.SaveChanges();
+
+            var imageReadDto = _mapper.Map<ImageReadDto>(image);
+
+            return CreatedAtRoute(nameof(GetImageId), new { Id = imageReadDto.ImageId }, imageReadDto);
         }
     }
 }

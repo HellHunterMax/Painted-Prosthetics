@@ -8,7 +8,9 @@ namespace PP.Web.API.Profiles
     {
         public ImagesProfile()
         {
+            //source -> Target
             CreateMap<Image, ImageReadDto>();
+            CreateMap<ImageCreateDto, Image>();
         }
     }
 }
