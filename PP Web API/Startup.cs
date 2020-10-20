@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PP.Web.API.Data;
+using AutoMapper;
 
 namespace PP.Web.Api
 {
@@ -31,6 +32,8 @@ namespace PP.Web.Api
                opt.UseSqlServer(Configuration.GetConnectionString("GalleryConnection")));
 
             services.AddControllers();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IImageRepository, SqlImageRepository>();
 

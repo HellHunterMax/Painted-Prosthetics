@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PP.Web.API.Model;
+using System;
 
 namespace PP.Web.API.Data
 {
@@ -15,10 +16,14 @@ namespace PP.Web.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Image>()
-            .HasOne<Artist>(s => s.Artist)
-            .WithMany(g => g.Images)
-            .HasForeignKey(s => s.ArtistId);
+            if (modelBuilder == null)
+            {
+                throw new NullReferenceException("modelBuilder Cannot be null");
+            }
+            _ = modelBuilder.Entity<Image>()
+                            .HasOne<Artist>(s => s.Artist)
+                            .WithMany(g => g.Images)
+                            .HasForeignKey(s => s.ArtistId);
         }
 
     }
