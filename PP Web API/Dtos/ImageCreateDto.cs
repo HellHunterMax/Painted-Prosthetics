@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 using PP.Web.API.Model;
 
 namespace PP.Web.API.Dtos
 {
-    public class ImageReadDto
+    public class ImageCreateDto
     {
-        public int ImageId { get; set; }
-        
+        [Required]
         public string Name { get; set; }
-        
+
         public int ArtistId { get; set; }
 
         //public Artist Artist { get; set; }
