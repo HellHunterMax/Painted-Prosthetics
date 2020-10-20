@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PP.Web.API.Model;
 
 namespace PP.Web.API.Dtos
@@ -20,6 +17,6 @@ namespace PP.Web.API.Dtos
 
         public int Likes { get; set; }
 
-        public string Uri { get; set; }
+        public Uri Uri { get; set; }
     }
 }
