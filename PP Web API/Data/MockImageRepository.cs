@@ -8,6 +8,11 @@ namespace PP.Web.API.Data
 {
     public class MockImageRepository : IImageRepository
     {
+        public void CreateImage(Image image)
+        {
+            throw new NotImplementedException();
+        }
+
         public Image GetImage(int id)
         {
             return new Image { ImageId = 0, AddDate = new DateTime(2020, 01, 01), Likes = 0, Name = "First Image", Uri = "https://github.com/csinn/Painted-Prosthetics/blob/master/Docs/Images/Prosthetics2.PNG?raw=true" };
@@ -23,6 +28,11 @@ namespace PP.Web.API.Data
             };
 
             return images;
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

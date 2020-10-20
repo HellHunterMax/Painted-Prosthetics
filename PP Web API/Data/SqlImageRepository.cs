@@ -15,6 +15,17 @@ namespace PP.Web.API.Data
             _dbContext = dbContext;
         }
 
+        public void CreateImage(Image image)
+        {
+            if (image == null)
+            {
+                throw new ArgumentNullException($"{nameof(image)} cannot be null");
+            }
+
+            _dbContext.Images.Add(image);
+
+        }
+
         public Image GetImage(int id)
         {
             return _dbContext.Images.FirstOrDefault(x => x.ImageId == id);
@@ -23,6 +34,11 @@ namespace PP.Web.API.Data
         public IEnumerable<Image> GetImages()
         {
             return _dbContext.Images.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_dbContext.SaveChanges() >= 0);
         }
     }
 }

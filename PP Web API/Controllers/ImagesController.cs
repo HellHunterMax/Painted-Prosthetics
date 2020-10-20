@@ -23,11 +23,12 @@ namespace PP.Web.API.Controllers
 
         //Get api/Images
         [HttpGet]
-        public ActionResult<IEnumerable<Image>> GetAllImages()
+        public ActionResult<IEnumerable<ImageReadDto>> GetAllImages()
         {
             var imagesItems = _imageRepository.GetImages();
 
-            return Ok(imagesItems);
+
+            return Ok(_mapper.Map<IEnumerable<ImageReadDto>>(imagesItems));
         }
 
         //Get api/Images/id

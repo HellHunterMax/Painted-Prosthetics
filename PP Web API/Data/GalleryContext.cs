@@ -18,7 +18,7 @@ namespace PP.Web.API.Data
         {
             if (modelBuilder == null)
             {
-                throw new NullReferenceException("modelBuilder Cannot be null");
+                throw new NullReferenceException($"{nameof(modelBuilder)} Cannot be null");
             }
             _ = modelBuilder.Entity<Image>()
                             .HasOne<Artist>(s => s.Artist)
