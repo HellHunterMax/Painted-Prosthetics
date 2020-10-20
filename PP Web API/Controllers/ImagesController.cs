@@ -32,7 +32,11 @@ namespace PP.Web.API.Controllers
         {
             var imageItem = _imageRepository.GetImage(id);
 
-            return Ok(imageItem);
+            if(imageItem != null)
+            {
+                return Ok(imageItem);
+            }
+            return NotFound();
         }
     }
 }
