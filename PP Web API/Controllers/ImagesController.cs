@@ -104,5 +104,22 @@ namespace PP.Web.API.Controllers
 
             return NoContent();
         }
+
+        //DELETE api/images/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteImage(int id)
+        {
+            var imageFromRepo = _imageRepository.GetImage(id);
+
+            if (imageFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _imageRepository.DeleteImage(imageFromRepo);
+            _imageRepository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

@@ -13,6 +13,11 @@ namespace PP.Web.API.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteImage(Image image)
+        {
+            throw new NotImplementedException();
+        }
+
         public Image GetImage(int id)
         {
             return new Image { ImageId = 0, AddDate = new DateTime(2020, 01, 01), Likes = 0, Name = "First Image", Uri = "https://github.com/csinn/Painted-Prosthetics/blob/master/Docs/Images/Prosthetics2.PNG?raw=true" };

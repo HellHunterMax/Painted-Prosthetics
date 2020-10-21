@@ -11,5 +11,6 @@ namespace PP.Web.API.Data
         Image GetImage(int id);
         void CreateImage(Image image);
         void UpdateImage(Image image);
+        void DeleteImage(Image image);
     }
 }
