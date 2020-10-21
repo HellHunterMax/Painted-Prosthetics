@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using PP.Web.API.Model;
 
 namespace PP.Web.API.Data
@@ -23,7 +22,6 @@ namespace PP.Web.API.Data
             }
 
             context.Images.Add(image);
-
         }
 
         public void DeleteImage(Image image)

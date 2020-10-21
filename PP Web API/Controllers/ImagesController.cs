@@ -28,7 +28,6 @@ namespace PP.Web.API.Controllers
         {
             var imagesItems = _imageRepository.GetImages();
 
-
             return Ok(_mapper.Map<IEnumerable<ImageReadDto>>(imagesItems));
         }
 
@@ -38,7 +37,7 @@ namespace PP.Web.API.Controllers
         {
             var imageItem = _imageRepository.GetImage(id);
 
-            if(imageItem != null)
+            if (imageItem != null)
             {
                 return Ok(_mapper.Map<ImageReadDto>(imageItem));
             }

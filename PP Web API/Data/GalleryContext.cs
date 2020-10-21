@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using PP.Web.API.Model;
-using System;
 
 namespace PP.Web.API.Data
 {
@@ -8,7 +8,6 @@ namespace PP.Web.API.Data
     {
         public GalleryContext(DbContextOptions<GalleryContext> options) : base(options)
         {
-
         }
 
         public DbSet<Image> Images { get; set; }
@@ -25,6 +24,5 @@ namespace PP.Web.API.Data
                             .WithMany(g => g.Images)
                             .HasForeignKey(s => s.ArtistId);
         }
-
     }
 }
