@@ -49,6 +49,7 @@ namespace PP.Web.API.Controllers
         public ActionResult<ImageReadDto> CreateImage(ImageCreateDto imageCreateDto)
         {
             var image = _mapper.Map<Image>(imageCreateDto);
+            image.AddDate = DateTime.Now;
             _imageRepository.CreateImage(image);
             _imageRepository.SaveChanges();
 

@@ -13,7 +13,7 @@ namespace PP.Web.API.Dtos
 
         //public Artist Artist { get; set; }
 
-        //public DateTime AddDate { get; set; }
+        public DateTime AddDate { get; set; }
 
         public int Likes { get; set; }
 
