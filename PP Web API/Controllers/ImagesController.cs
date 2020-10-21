@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PP.Web.API.Data;
 using PP.Web.API.Dtos;
@@ -62,16 +63,43 @@ namespace PP.Web.API.Controllers
         [HttpPut("{id}")]
         public ActionResult UpDateImage(int id, ImageUpdateDto imageUpdateDto)
         {
-            Image image = _imageRepository.GetImage(id);
+            var imageFromRepo = _imageRepository.GetImage(id);
 
-            if (image == null)
+            if (imageFromRepo == null)
             {
                 return NotFound();
             }
 
-            _mapper.Map(imageUpdateDto, image);
+            _mapper.Map(imageUpdateDto, imageFromRepo);
 
-            _imageRepository.UpdateImage(image);
+            _imageRepository.UpdateImage(imageFromRepo);
+            _imageRepository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //PATCH api/Image/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialImageUpdate(int id, JsonPatchDocument<ImageUpdateDto> patchDoc)
+        {
+            var imageFromRepo = _imageRepository.GetImage(id);
+
+            if (imageFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var imageToPatch = _mapper.Map<ImageUpdateDto>(imageFromRepo);
+            patchDoc.ApplyTo(imageToPatch, ModelState);
+
+            if (!TryValidateModel(imageToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(imageToPatch, imageFromRepo);
+
+            _imageRepository.UpdateImage(imageFromRepo);
             _imageRepository.SaveChanges();
 
             return NoContent();
