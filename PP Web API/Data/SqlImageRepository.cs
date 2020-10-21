@@ -40,5 +40,10 @@ namespace PP.Web.API.Data
         {
             return (_dbContext.SaveChanges() >= 0);
         }
+
+        public void UpdateImage(Image image)
+        {
+            //Nothing
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace PP.Web.API.Data
         IEnumerable<Image> GetImages();
         Image GetImage(int id);
         void CreateImage(Image image);
+        void UpdateImage(Image image);
     }
 }

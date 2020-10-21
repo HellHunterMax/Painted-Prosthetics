@@ -11,6 +11,7 @@ namespace PP.Web.API.Profiles
             //source -> Target
             CreateMap<Image, ImageReadDto>();
             CreateMap<ImageCreateDto, Image>();
+            CreateMap<ImageUpdateDto, Image>();
         }
     }
 }

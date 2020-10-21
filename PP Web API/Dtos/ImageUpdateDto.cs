@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PP.Web.API.Dtos
 {
-    public class ImageCreateDto
+    public class ImageUpdateDto
     {
         [Required]
         public string Name { get; set; }

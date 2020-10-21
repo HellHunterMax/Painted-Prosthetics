@@ -57,5 +57,24 @@ namespace PP.Web.API.Controllers
 
             return CreatedAtRoute(nameof(GetImageId), new { Id = imageReadDto.ImageId }, imageReadDto);
         }
+
+        //PUT api/images/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpDateImage(int id, ImageUpdateDto imageUpdateDto)
+        {
+            Image image = _imageRepository.GetImage(id);
+
+            if (image == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(imageUpdateDto, image);
+
+            _imageRepository.UpdateImage(image);
+            _imageRepository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

@@ -34,5 +34,10 @@ namespace PP.Web.API.Data
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateImage(Image image)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
