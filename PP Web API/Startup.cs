@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PP.Web.API.Data;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace PP.Web.Api
 {
@@ -31,7 +32,9 @@ namespace PP.Web.Api
             services.AddDbContext<GalleryContext>(opt =>
                opt.UseSqlServer(Configuration.GetConnectionString("GalleryConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => { 
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); 
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
