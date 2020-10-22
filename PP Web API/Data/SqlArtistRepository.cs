@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using PP.Web.API.Model;
 
 namespace PP.Web.API.Data
@@ -15,33 +16,17 @@ namespace PP.Web.API.Data
         }
         public IEnumerable<Artist> GetAllArtists()
         {
-            var artists = _context.Artists.ToList();
-            
-            var images = _context.Images.ToList();
-            /*
-            foreach (Artist artist in artists)
-            {
-                if (artist == null)
-                {
-                    continue;
-                }
-
-                var foundImages = from image in images
-                                  where image.ArtistId == artist.ArtistId
-                                  select image;
-
-                if (foundImages.ToList().Count != 0)
-                {
-                    artist.Images = foundImages.ToList();
-                }
-            }
-            */
+            var artists = _context.Artists.Include(artist => artist.Images).ToList();
             return artists;
         }
 
         public Artist GetArtist(int id)
         {
-            return _context.Artists.FirstOrDefault(x => x.ArtistId == id);
+            var artist = _context.Artists.SingleOrDefault(artist => artist.ArtistId == id);
+            _context.Entry(artist).Collection(a => a.Images).Load();
+
+            //var artist = _context.Artists.Include(artist => artist.Images).FirstOrDefault(x => x.ArtistId == id);
+            return artist;
         }
     }
 }

@@ -35,8 +35,21 @@ namespace PP.Web.API.Controllers
             return Ok(_mapper.Map<IEnumerable<ArtistReadDto>>(artists));
         }
 
-        //TODO GET
         //TODO GET ID
+        //api/artists/{id}
+        [HttpGet("{id}")]
+        public ActionResult<ArtistReadDto> GetArtist(int id)
+        {
+            var artist = _artistRepository.GetArtist(id);
+
+            if (artist == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<ArtistReadDto>(artist));
+        }
+
         //TODO POST
         //TODO PUT
         //TODO PATCH
