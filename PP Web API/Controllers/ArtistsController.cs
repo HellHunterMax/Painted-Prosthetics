@@ -26,13 +26,13 @@ namespace PP.Web.API.Controllers
 
         //api/artists
         [HttpGet]
-        public ActionResult<IEnumerable<Artist>> GetAllArtists()
+        public ActionResult<IEnumerable<ArtistReadDto>> GetAllArtists()
         {
             var artists = _artistRepository.GetAllArtists().ToList();
 
             //_mapper.Map<IEnumerable<ArtistReadDto>>(artists);
 
-            return Ok(artists);
+            return Ok(_mapper.Map<IEnumerable<ArtistReadDto>>(artists));
         }
 
         //TODO GET
