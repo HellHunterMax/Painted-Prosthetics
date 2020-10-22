@@ -15,7 +15,28 @@ namespace PP.Web.API.Data
         }
         public IEnumerable<Artist> GetAllArtists()
         {
-            return _context.Artists.ToList();
+            var artists = _context.Artists.ToList();
+            
+            var images = _context.Images.ToList();
+            /*
+            foreach (Artist artist in artists)
+            {
+                if (artist == null)
+                {
+                    continue;
+                }
+
+                var foundImages = from image in images
+                                  where image.ArtistId == artist.ArtistId
+                                  select image;
+
+                if (foundImages.ToList().Count != 0)
+                {
+                    artist.Images = foundImages.ToList();
+                }
+            }
+            */
+            return artists;
         }
 
         public Artist GetArtist(int id)
