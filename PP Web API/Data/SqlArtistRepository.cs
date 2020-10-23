@@ -14,6 +14,7 @@ namespace PP.Web.API.Data
         {
             _context = context;
         }
+
         public IEnumerable<Artist> GetAllArtists()
         {
             var artists = _context.Artists.Include(artist => artist.Images).ToList();
@@ -27,6 +28,21 @@ namespace PP.Web.API.Data
 
             //var artist = _context.Artists.Include(artist => artist.Images).FirstOrDefault(x => x.ArtistId == id);
             return artist;
+        }
+
+        public void CreateArtist(Artist artist)
+        {
+            if (artist == null)
+            {
+                throw new ArgumentNullException($"{nameof(artist)} cannot be null!");
+            }
+
+            _context.Add(artist);
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

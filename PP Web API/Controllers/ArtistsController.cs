@@ -11,6 +11,7 @@ using PP.Web.API.Model;
 
 namespace PP.Web.API.Controllers
 {
+    //api/artists
     [Route("api/[controller]")]
     [ApiController]
     public class ArtistsController : ControllerBase
@@ -35,10 +36,9 @@ namespace PP.Web.API.Controllers
             return Ok(_mapper.Map<IEnumerable<ArtistReadDto>>(artists));
         }
 
-        //TODO GET ID
         //api/artists/{id}
-        [HttpGet("{id}")]
-        public ActionResult<ArtistReadDto> GetArtist(int id)
+        [HttpGet("{id}", Name = "GetArtistId")]
+        public ActionResult<ArtistReadDto> GetArtistId(int id)
         {
             var artist = _artistRepository.GetArtist(id);
 
@@ -51,6 +51,19 @@ namespace PP.Web.API.Controllers
         }
 
         //TODO POST
+        //api/artists
+        [HttpPost]
+        public ActionResult<ArtistReadDto> CreateArtist(ArtistCreateDto artistCreateDto)
+        {
+            var artist = _mapper.Map<Artist>(artistCreateDto);
+            _artistRepository.CreateArtist(artist);
+            _artistRepository.SaveChanges();
+
+            var artistReadDto = _mapper.Map<ArtistReadDto>(artist);
+
+            return CreatedAtRoute(nameof(GetArtistId), new { Id = artistReadDto.ArtistId }, artistReadDto);
+        }
+
         //TODO PUT
         //TODO PATCH
         //TODO DELETE

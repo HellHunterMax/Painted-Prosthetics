@@ -10,5 +10,7 @@ namespace PP.Web.API.Data
     {
         Artist GetArtist(int id);
         IEnumerable<Artist> GetAllArtists();
+        void CreateArtist(Artist artist);
+        bool SaveChanges();
     }
 }

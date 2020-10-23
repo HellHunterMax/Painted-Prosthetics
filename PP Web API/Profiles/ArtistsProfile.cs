@@ -8,8 +8,9 @@ namespace PP.Web.API.Profiles
     {
         public ArtistsProfile()
         {
-            //CreateMap<ArtistReadDto, Artist>();
+            //source -> Target
             CreateMap<Artist, ArtistReadDto>();
+            CreateMap<ArtistCreateDto, Artist>();
         }
     }
 }
