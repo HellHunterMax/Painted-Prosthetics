@@ -50,7 +50,6 @@ namespace PP.Web.API.Controllers
             return Ok(_mapper.Map<ArtistReadDto>(artist));
         }
 
-        //TODO POST
         //api/artists
         [HttpPost]
         public ActionResult<ArtistReadDto> CreateArtist(ArtistCreateDto artistCreateDto)
@@ -65,6 +64,11 @@ namespace PP.Web.API.Controllers
         }
 
         //TODO PUT
+        [HttpPut("{id}")]
+        public ActionResult UpdateArtist(int id)
+        {
+
+        }
         //TODO PATCH
         //TODO DELETE
 
