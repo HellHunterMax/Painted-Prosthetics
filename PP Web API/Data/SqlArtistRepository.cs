@@ -40,6 +40,11 @@ namespace PP.Web.API.Data
             _context.Add(artist);
         }
 
+        public void UpdateArtist(Artist artist)
+        {
+            //Nothing
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

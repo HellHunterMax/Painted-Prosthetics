@@ -63,12 +63,25 @@ namespace PP.Web.API.Controllers
             return CreatedAtRoute(nameof(GetArtistId), new { Id = artistReadDto.ArtistId }, artistReadDto);
         }
 
-        //TODO PUT
+        //api/Artists/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateArtist(int id)
+        public ActionResult UpdateArtist(int id, ArtistUpdateDto artistUpdateDto)
         {
+            var artistFromRepo = _artistRepository.GetArtist(id);
 
+            if (artistFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(artistUpdateDto, artistFromRepo);
+
+            _artistRepository.UpdateArtist(artistFromRepo);
+            _artistRepository.SaveChanges();
+
+            return NoContent();
         }
+
         //TODO PATCH
         //TODO DELETE
 

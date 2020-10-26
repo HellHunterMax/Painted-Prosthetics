@@ -11,6 +11,7 @@ namespace PP.Web.API.Profiles
             //source -> Target
             CreateMap<Artist, ArtistReadDto>();
             CreateMap<ArtistCreateDto, Artist>();
+            CreateMap<ArtistUpdateDto, Artist>();
         }
     }
 }
