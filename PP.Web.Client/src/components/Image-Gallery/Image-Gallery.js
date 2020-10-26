@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./carousel.css";
 import { Carousel } from "react-responsive-carousel";
-import images from "./GalleryImages";
 import { config } from "../../Helpers/config"
 
 export default class ImageGallery extends React.Component {
@@ -15,7 +14,7 @@ export default class ImageGallery extends React.Component {
 
     componentDidMount()
     {
-        fetch(config.apiUrl + "/api/Images",
+        fetch(config.apiUrl + "/api/images",
             {
                 method: 'GET'
             })
@@ -39,8 +38,8 @@ export default class ImageGallery extends React.Component {
         
         const images_list = this.state.images.map( (element) => {
             return (
-                <div key={element.id}>
-                    <img src={element.imageUrl} />
+                <div key={element.imageId}>
+                    <img src={element.uri} />
                     <p className={this.state.clicked ? 'legend' : "legend-hide"} >{element.title}</p>
                 </div>
             );

@@ -41,6 +41,15 @@ namespace PP.Web.Api
             services.AddScoped<IImageRepository, SqlImageRepository>();
             services.AddScoped<IArtistRepository, SqlArtistRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader();
+                                  });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +63,8 @@ namespace PP.Web.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
