@@ -12,6 +12,7 @@ namespace PP.Web.API.Data
         IEnumerable<Artist> GetAllArtists();
         void CreateArtist(Artist artist);
         void UpdateArtist(Artist artist);
+        void DeleteArtist(Artist artist);
         bool SaveChanges();
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PP.Web.API.Data;
 using PP.Web.API.Dtos;
@@ -82,8 +83,49 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
-        //TODO PATCH
-        //TODO DELETE
+        //api/Artists/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialArtistUpdate(int id, JsonPatchDocument<ArtistUpdateDto> patchDoc)
+        {
+            var artistFromRepo = _artistRepository.GetArtist(id);
+
+            if (artistFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var artistToPatch = _mapper.Map<ArtistUpdateDto>(artistFromRepo);
+            patchDoc.ApplyTo(artistToPatch, ModelState);
+
+            if (!TryValidateModel(artistToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(artistToPatch, artistFromRepo);
+
+            _artistRepository.UpdateArtist(artistFromRepo);
+            _artistRepository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //api/Artists/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteArtist(int id)
+        {
+            var artistFromRepo = _artistRepository.GetArtist(id);
+
+            if (artistFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _artistRepository.DeleteArtist(artistFromRepo);
+            _artistRepository.SaveChanges();
+
+            return NoContent();
+        }
 
     }
 }

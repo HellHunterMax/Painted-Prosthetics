@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PP.Web.API.Model;
@@ -43,6 +44,16 @@ namespace PP.Web.API.Data
         public void UpdateArtist(Artist artist)
         {
             //Nothing
+        }
+
+        public void DeleteArtist(Artist artist)
+        {
+            if (artist == null)
+            {
+                throw new ArgumentNullException($"{nameof(artist)} cannot be null!");
+            }
+
+            _context.Artists.Remove(artist);
         }
 
         public bool SaveChanges()
