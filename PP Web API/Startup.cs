@@ -39,6 +39,7 @@ namespace PP.Web.Api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IImageRepository, SqlImageRepository>();
+            services.AddScoped<IArtistRepository, SqlArtistRepository>();
 
         }
 

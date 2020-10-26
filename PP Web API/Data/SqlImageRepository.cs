@@ -7,11 +7,11 @@ namespace PP.Web.API.Data
 {
     public class SqlImageRepository : IImageRepository
     {
-        private readonly GalleryContext context;
+        private readonly GalleryContext _context;
 
         public SqlImageRepository(GalleryContext dbContext)
         {
-            context = dbContext;
+            _context = dbContext;
         }
 
         public void CreateImage(Image image)
@@ -21,7 +21,7 @@ namespace PP.Web.API.Data
                 throw new ArgumentNullException($"{nameof(image)} cannot be null");
             }
 
-            context.Images.Add(image);
+            _context.Images.Add(image);
         }
 
         public void DeleteImage(Image image)
@@ -31,22 +31,22 @@ namespace PP.Web.API.Data
                 throw new ArgumentNullException($"{nameof(image)} cannot be null");
             }
 
-            context.Images.Remove(image);
+            _context.Images.Remove(image);
         }
 
         public Image GetImage(int id)
         {
-            return context.Images.FirstOrDefault(x => x.ImageId == id);
+            return _context.Images.FirstOrDefault(x => x.ImageId == id);
         }
 
         public IEnumerable<Image> GetImages()
         {
-            return context.Images.ToList();
+            return _context.Images.ToList();
         }
 
         public bool SaveChanges()
         {
-            return (context.SaveChanges() >= 0);
+            return (_context.SaveChanges() >= 0);
         }
 
         public void UpdateImage(Image image)
