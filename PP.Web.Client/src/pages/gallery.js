@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import ImageGallery from "../components/Image-Gallery/Image-Gallery";
+import ImageGallery from "../components/ImageGallery/ImageGallery";
 
 class Gallery extends React.PureComponent {
     render() {

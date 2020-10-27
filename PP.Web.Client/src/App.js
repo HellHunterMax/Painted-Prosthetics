@@ -11,6 +11,7 @@ import Login from './pages/login'
 import Gallery from './pages/gallery'
 import About from './pages/about'
 import Donate from './pages/donate'
+import Artist from './pages/artist'
 
 function App() {
     return (
@@ -26,6 +27,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/artist">
+                        <Artist />
                     </Route>
                     <Route path="/">
                         <Gallery />
