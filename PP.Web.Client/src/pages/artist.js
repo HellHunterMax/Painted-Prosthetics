@@ -38,11 +38,11 @@ export default class artist extends React.PureComponent {
             <div className='home-container'>
                 <div className='text-container'>
                     <h1 className='title'>Artist Gallery</h1>
-                    <div className="Gallery-container">
+                    <div className="gallery-container">
                         {console.log(this.state.Artist.images)}
                         <ArtistGallery images={this.state.Artist.images} />
                     </div>
-                    <div className="artistInfo">
+                    <div className="artist-info">
                         <h1 className="artistName">{this.state.Artist.name}</h1>
                         <a className="websiteLink" href={this.state.Artist.website}>{this.state.Artist.website}</a>
                         <p className="bio">{this.state.Artist.bio}</p>

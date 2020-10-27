@@ -1,2 +1,28 @@
 ﻿body {
 }
+.gallery-container {
+    width: 50%;
+    float: left;
+}
+.artist-info {
+    width: 50%;
+    float: right;
+}
+.artistName {
+    margin-top:0;
+}
+.websiteLink {
+    margin: 12px;
+    border-color:black;
+    border:1px;
+}
+.bio {
+    margin: 12px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    height: 20rem;
+}
+.contact-button {
+    margin:12px;
+    border-radius: 12px;
+}
