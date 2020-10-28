@@ -40,7 +40,7 @@ export default class ImageGallery extends React.Component {
             return (
                 <div key={element.imageId}>
                     <img src={element.uri} />
-                    <p className={this.state.clicked ? 'legend' : "legend-hide"} >{element.title}</p>
+                    <p className={this.state.clicked ? 'legend' : "legend-hide"} >{element.name}</p>
                 </div>
             );
         });
