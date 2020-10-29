@@ -19,9 +19,4 @@
         url: '/login',
         cName: 'nav-links'
     },
-    {
-        title: 'Artist',
-        url: '/artist',
-        cName: 'nav-links'
-    },
 ]

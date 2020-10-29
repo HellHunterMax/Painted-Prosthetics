@@ -7,8 +7,8 @@ class Gallery extends React.PureComponent {
             <div className='home-container'>
                 <div className='text-container'>
                     <h1 className='title'>Gallery</h1>
-                    <ImageGallery />
                 </div>
+                <ImageGallery />
             </div>
         )
     }

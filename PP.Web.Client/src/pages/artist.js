@@ -2,17 +2,21 @@
 import './artist-page.css';
 import ArtistGallery from "../components/ArtistGallery/artistGallery";
 import { config } from "../Helpers/config";
+import { useParams } from "react-router-dom";
 
 export default class artist extends React.PureComponent {
     constructor(props) {
         super(props);
+        let { id } = this.props.match.params;
+        console.log(id);
         this.state = {
             Artist: Object,
             isLoading: true
         }
     }
     componentDidMount() {
-        fetch(config.apiUrl + "/api/artists/1",
+        let { id } = this.props.match.params;
+        fetch(config.apiUrl + "/api/artists/" + id,
             {
                 method: 'GET'
             })
@@ -26,9 +30,7 @@ export default class artist extends React.PureComponent {
         )
     }
 
-    
     render() {
-        
         if (this.state.isLoading) {
             return (<h1>LOADING</h1>
                 )
@@ -39,7 +41,6 @@ export default class artist extends React.PureComponent {
                 <div className='text-container'>
                     <h1 className='title'>Artist Gallery</h1>
                     <div className="gallery-container">
-                        {console.log(this.state.Artist.images)}
                         <ArtistGallery images={this.state.Artist.images} />
                     </div>
                     <div className="artist-info">
@@ -54,4 +55,8 @@ export default class artist extends React.PureComponent {
             </div>
         )
     }
+}
+
+function test () {
+    
 }

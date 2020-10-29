@@ -1,14 +1,13 @@
 import * as React from "react";
-import "./carousel.css";
-import { Carousel } from "react-responsive-carousel";
-import { config } from "../../Helpers/config"
+import "./ImageGallery.css";
+import { config } from "../../Helpers/config";
+import ImagePart from "./Image-Part";
 
 export default class ImageGallery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            images : [],
-            clicked: true
+            images : []
         }
     }
 
@@ -27,10 +26,6 @@ export default class ImageGallery extends React.Component {
         .catch(console.log)
     }
     
-    onClickItemEvent() {
-        this.setState({ clicked: !this.state.clicked });
-    }
-    
     render() {
         if (this.state.images.length === 0) {
             return (<div><h1>Images not found</h1></div>);
@@ -39,19 +34,15 @@ export default class ImageGallery extends React.Component {
         const images_list = this.state.images.map( (element) => {
             return (
                 <div key={element.imageId}>
-                    <img src={element.uri} />
-                    <p className={this.state.clicked ? 'legend' : "legend-hide"} >{element.name}</p>
+                    <ImagePart image={element} />
                 </div>
             );
         });
         return (
             <div>
-                <h2>Painted Prosthetics</h2>
-                <Carousel transitionTime="500" infiniteLoop 
-                    onClickItem={() => {this.onClickItemEvent()}}
-                    >
+                <div className="gallery-images-container">
                     {images_list}
-                </Carousel>
+                </div>
             </div>
         )
     };

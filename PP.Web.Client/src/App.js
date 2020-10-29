@@ -28,9 +28,7 @@ function App() {
                     <Route path="/login">
                         <Login />
                     </Route>
-                    <Route path="/artist">
-                        <Artist />
-                    </Route>
+                    <Route path="/artist/:id" component={Artist} />
                     <Route path="/">
                         <Gallery />
                     </Route>
