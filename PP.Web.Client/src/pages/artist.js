@@ -2,13 +2,10 @@
 import './artist-page.css';
 import ArtistGallery from "../components/ArtistGallery/artistGallery";
 import { config } from "../Helpers/config";
-import { useParams } from "react-router-dom";
 
 export default class artist extends React.PureComponent {
     constructor(props) {
         super(props);
-        let { id } = this.props.match.params;
-        console.log(id);
         this.state = {
             Artist: Object,
             isLoading: true
