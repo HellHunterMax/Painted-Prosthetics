@@ -14,11 +14,14 @@ using Microsoft.Extensions.Logging;
 using PP.Web.API.Data;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace PP.Web.Api
 {
     public class Startup
     {
+        private string _GalleryConnection = null;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,8 +32,10 @@ namespace PP.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            _GalleryConnection = Configuration["ConnectionStrings:GalleryConnection"];
+
             services.AddDbContext<GalleryContext>(opt =>
-               opt.UseSqlServer(Configuration.GetConnectionString("GalleryConnection")));
+               opt.UseSqlServer(_GalleryConnection));
 
             services.AddControllers().AddNewtonsoftJson(s => { 
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); 

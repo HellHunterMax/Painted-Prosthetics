@@ -1,17 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>PP.Web.API</RootNamespace>
+    <UserSecretsId>6f019be0-2c37-4ec0-9418-fc1fdc0f0716</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Migrations\20201018033759_InitialCreate.cs" />
     <Compile Remove="Migrations\20201018033759_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20201018041427_InitialCreate.cs" />
     <Compile Remove="Migrations\20201018041427_InitialCreate.Designer.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
@@ -32,6 +31,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-
 </Project>
