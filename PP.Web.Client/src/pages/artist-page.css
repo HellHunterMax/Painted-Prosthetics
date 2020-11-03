@@ -3,6 +3,7 @@
 .gallery-container {
     width: 50%;
     float: left;
+    margin-top: 70px;
 }
 .artist-info {
     width: 50%;
