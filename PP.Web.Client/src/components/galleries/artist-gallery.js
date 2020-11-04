@@ -1,8 +1,8 @@
-﻿import * as React from 'react';
-import "../ImageGallery/carousel.css";
+﻿import * as React from "react";
 import { Carousel } from "react-responsive-carousel";
+import "../galleries/carousel.css";
 
-export default class ArtistGallery extends React.Component {
+export default class ArtistGallery extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,10 +20,10 @@ export default class ArtistGallery extends React.Component {
             return (<div><h1>Images not found</h1></div>);
         }
 
-        const images_list = this.props.images.map((element) => {
+        const imagesList = this.props.images.map((element) => {
             return (
                 <div key={element.imageId}>
-                    <img src={element.uri} />
+                    <img src={element.uri} alt={element.name} />
                     <p className={this.state.clicked ? 'legend' : "legend-hide"} >{element.name}</p>
                 </div>
             );
@@ -33,7 +33,7 @@ export default class ArtistGallery extends React.Component {
                 <Carousel transitionTime="500" infiniteLoop
                     onClickItem={() => { this.onClickItemEvent() }}
                 >
-                    {images_list}
+                    {imagesList}
                 </Carousel>
             </div>
         )

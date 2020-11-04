@@ -1,22 +1,22 @@
-import React from 'react';
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer";
-import './App.css';
+import React from "react";
+import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer";
+import Login from "./pages/login";
+import Gallery from "./pages/gallery";
+import About from "./pages/about";
+import Donate from "./pages/donate";
+import Artist from "./pages/artist";
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
-import Login from './pages/login'
-import Gallery from './pages/gallery'
-import About from './pages/about'
-import Donate from './pages/donate'
-import Artist from './pages/artist'
+import "./app.css";
 
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className="app">
                 <Navbar />
                 <Switch>
                     <Route path="/about">

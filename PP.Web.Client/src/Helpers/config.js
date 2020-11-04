@@ -1,3 +1,3 @@
-export const config = {
-    apiUrl: 'https://localhost:5001'
+export const Config = {
+    apiUrl: "https://localhost:5001"
 };
