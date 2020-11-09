@@ -34,9 +34,11 @@ export default class Login extends React.Component {
         const { username, password} = this.state;
         if (username && password)
         {
-            userService.login(username, password).catch(err => {
-                this.setState({ errorMessage: err.message });
-            });
+            userService.login(username, password)
+                .then(console.log(localStorage.getItem("user")))
+                .catch(err => {
+                    this.setState({ errorMessage: err.message });
+                });
         }
 }
 
