@@ -1,6 +1,6 @@
 ﻿import * as React from "react";
 import ArtistGallery from "../components/galleries/artist-gallery";
-import { Config } from "../helpers/config";
+import { Config } from "../helpers/config.js";
 import "./artist-page.css";
 
 export default class Artist extends React.PureComponent {
