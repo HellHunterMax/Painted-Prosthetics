@@ -6,6 +6,7 @@ import Gallery from "./pages/gallery";
 import About from "./pages/about";
 import Donate from "./pages/donate";
 import Artist from "./pages/artist";
+import Admin from "./pages/admin";
 import {
     BrowserRouter as Router,
     Switch,
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/login">
                         <Login />
                     </Route>
+                    <Route path="/admin" component={ Admin} />
                     <Route path="/artist/:id" component={Artist} />
                     <Route path="/">
                         <Gallery />

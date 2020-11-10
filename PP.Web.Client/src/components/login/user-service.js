@@ -30,9 +30,11 @@ function login(name, password) {
 
 function logout() {
     // remove user from local storage to log user out
+    let user = []
     console.log(localStorage.getItem("user"));
     if (localStorage.getItem("user")) {
-        console.log("logging out user" + { localStorage.getItem("user") });
+        user = localStorage.getItem("user");
+        console.log("logging out user" + user.name);
     }
     localStorage.removeItem('user');
 }
