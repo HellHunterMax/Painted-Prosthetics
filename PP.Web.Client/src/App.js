@@ -7,6 +7,7 @@ import About from "./pages/about";
 import Donate from "./pages/donate";
 import Artist from "./pages/artist";
 import Admin from "./pages/admin";
+import { PrivateRoute } from "./components/private-route";
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,7 +15,7 @@ import {
 } from "react-router-dom";
 import "./app.css";
 
-function App() {
+export default function App() {
     return (
         <Router>
             <div className="app">
@@ -29,7 +30,7 @@ function App() {
                     <Route path="/login">
                         <Login />
                     </Route>
-                    <Route path="/admin" component={ Admin} />
+                    <PrivateRoute exact path="/admin" component={Admin}/>
                     <Route path="/artist/:id" component={Artist} />
                     <Route path="/">
                         <Gallery />
@@ -40,5 +41,3 @@ function App() {
         </Router>
     );
 }
-
-export default App;

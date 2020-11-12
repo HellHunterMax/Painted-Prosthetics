@@ -4,6 +4,7 @@ import About from "../components/admin/about-management";
 import Donate from "../components/admin/donate-management";
 import Artists from "../components/admin/artist-management";
 import Images from "../components/admin/image-management";
+import { PrivateRoute } from "../components/private-route";
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,16 +12,17 @@ import {
 } from "react-router-dom";
 import "./admin.css";
 
+//TODO block page for non admin
 export default class Admin extends React.PureComponent {
     render() {
         return (
             <div className="home-container">
-                <h1 className="title">Admin Contols</h1>
+                <h1 className="title">Admin Controls</h1>
                 <div className="admin-container">
-                    <div className="navigation-container">
+                    <div className="floating navigation-container">
                         <Navigation />
                     </div>
-                    <div className="switch-container">
+                    <div className="floating route-container">
                             <Route path="/admin/about" component={About} />
                             <Route path="/admin/donate" component={Donate} />
                             <Route path="/admin/images" component={Images} />

@@ -44,6 +44,7 @@ namespace PP.Web.API.Controllers
             return NotFound();
         }
 
+        //TODO block CreateImage with authenticate
         //POST api/images
         [HttpPost]
         public ActionResult<ImageReadDto> CreateImage(ImageCreateDto imageCreateDto)
@@ -58,6 +59,7 @@ namespace PP.Web.API.Controllers
             return CreatedAtRoute(nameof(GetImageId), new { Id = imageReadDto.ImageId }, imageReadDto);
         }
 
+        //TODO block UpDateImage with authenticate
         //PUT api/images/{id}
         [HttpPut("{id}")]
         public ActionResult UpDateImage(int id, ImageUpdateDto imageUpdateDto)
@@ -77,6 +79,7 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
+        //TODO block PartialImageUpdate with authenticate
         //PATCH api/Image/{id}
         [HttpPatch("{id}")]
         public ActionResult PartialImageUpdate(int id, JsonPatchDocument<ImageUpdateDto> patchDoc)
@@ -104,6 +107,7 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
+        //TODO block DeleteImage with authenticate
         //DELETE api/images/{id}
         [HttpDelete("{id}")]
         public ActionResult DeleteImage(int id)

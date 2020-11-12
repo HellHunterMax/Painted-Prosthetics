@@ -1,20 +1,14 @@
-﻿.switch-container{
-    
+﻿.route-container {
 }
 
 .admin-container {
-    display: block;
-    grid-template-columns: repeat(2, auto);
-    grid-gap: 10px;
-    list-style: none;
-    text-align: center;
-    height: 70vh;
-    justify-content: end;
-    margin-right: 2rem;
+    display: grid;
+    grid-template-columns: 20vw 60vw; /*columns widths*/
+    height: 60vh;
 }
 
 .navigation-container {
-    float: left;
-    left: 0px;
-    width: 400px;
+}
+
+.floating{
 }
