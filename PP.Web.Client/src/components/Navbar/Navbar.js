@@ -13,7 +13,7 @@ export default class Navbar extends React.PureComponent {
     closeMobileMenu = () => {
         this.setState({ clicked: false })
     }
-
+    //TODO Login should change to Logout when logged in.
     render() {
         return (
             <nav className="navbar-items">

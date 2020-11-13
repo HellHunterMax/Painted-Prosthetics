@@ -1,32 +1,57 @@
 ﻿import * as React from "react";
-import Navigation from "../components/admin/navigation";
 import About from "../components/admin/about-management";
 import Donate from "../components/admin/donate-management";
 import Artists from "../components/admin/artist-management";
 import Images from "../components/admin/image-management";
-import { PrivateRoute } from "../components/private-route";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
 import "./admin.css";
 
-//TODO block page for non admin
 export default class Admin extends React.PureComponent {
+    state = {
+        aboutClicked: false,
+        donateClicked: false,
+        imagesClicked: false,
+        artistsClicked: false
+    }
+
+    handleAboutClicked = () => {
+        this.setState({ aboutClicked: true, donateClicked: false, imagesClicked: false, artistsClicked: false })
+    }
+    handledonateClicked = () => {
+        this.setState({ aboutClicked: false, donateClicked: true, imagesClicked: false, artistsClicked: false })
+    }
+    handleimagesClicked = () => {
+        this.setState({ aboutClicked: false, donateClicked: false, imagesClicked: true, artistsClicked: false })
+    }
+    handleartistsClicked = () => {
+        this.setState({ aboutClicked: false, donateClicked: false, imagesClicked: false, artistsClicked: true })
+    }
+
     render() {
         return (
             <div className="home-container">
                 <h1 className="title">Admin Controls</h1>
                 <div className="admin-container">
                     <div className="floating navigation-container">
-                        <Navigation />
+                        <ul>
+                            <li>
+                                <button onClick={this.handleAboutClicked}>About</button>
+                            </li>
+                            <li>
+                                <button onClick={this.handledonateClicked}>Donate</button>
+                            </li>
+                            <li>
+                                <button onClick={this.handleimagesClicked}>Images</button>
+                            </li>
+                            <li>
+                                <button onClick={this.handleartistsClicked}>Artists</button>
+                            </li>
+                        </ul>
                     </div>
                     <div className="floating route-container">
-                            <Route path="/admin/about" component={About} />
-                            <Route path="/admin/donate" component={Donate} />
-                            <Route path="/admin/images" component={Images} />
-                            <Route path="/admin/artists" component={Artists} />
+                        {this.state.aboutClicked && <About />}
+                        {this.state.donateClicked && <Donate />}
+                        {this.state.imagesClicked && <Images />}
+                        {this.state.artistsClicked && <Artists />}
                     </div>
                 </div>
             </div >
