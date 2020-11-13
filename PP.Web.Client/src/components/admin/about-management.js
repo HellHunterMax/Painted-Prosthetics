@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 
+//TODO link the aboutmanagement page up
 export default class AboutManagement extends React.PureComponent {
     render() {
         return (

@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 
+//TODO link the ArtistManagement page up
 export default class ArtistManagement extends React.PureComponent {
     render() {
         return (

@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
 
+//TODO link the DonateManagement up
 export default class DonateManagement extends React.PureComponent {
     render() {
         return (
