@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PP.Web.API.Dtos
+namespace PP.Web.API.Helpers
 {
-    public class UserDto
+    public class AppSettings
     {
-        public int Id { get; set; }
+
+        public string Secret { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public string EMail { get; set; }
     }
 }

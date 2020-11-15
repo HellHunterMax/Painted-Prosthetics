@@ -15,6 +15,7 @@ using PP.Web.API.Data;
 using AutoMapper;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Http;
+using PP.Web.API.Helpers;
 
 namespace PP.Web.Api
 {
@@ -45,6 +46,9 @@ namespace PP.Web.Api
 
             services.AddScoped<IImageRepository, SqlImageRepository>();
             services.AddScoped<IArtistRepository, SqlArtistRepository>();
+            services.AddScoped<IUserService, MockUserService>();
+
+            services.Configure<AppSettings>(Configuration.GetSection("Auth"));
 
             services.AddCors(options =>
             {
