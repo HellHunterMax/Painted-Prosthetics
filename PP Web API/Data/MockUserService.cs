@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using PP.Web.API.Dtos;
 using PP.Web.API.Helpers;
 using PP.Web.API.Model;
@@ -11,8 +15,6 @@ namespace PP.Web.API.Data
 {
     public class MockUserService : IUserService
     {
-        private readonly User _user = new User { Id = 1, Name = "Max", Password = "Testing" };
-        private readonly string _token = "faketoken";
         private readonly AppSettings _appSettings;
 
         public MockUserService(IOptions<AppSettings> appSettings)
@@ -25,24 +27,30 @@ namespace PP.Web.API.Data
             {
                 return null;
             }
-            if (model.Name == _user.Name)
+            if (model.Name == _appSettings.Name && model.Password == _appSettings.Password)
             {
-                return new UserReplyDto(_user, _token);
+                User user = new User { Id = 1, Name = _appSettings.Name };
+                var token = generateJwtToken(user);
+                return new UserReplyDto(user, token);
             }
             else
             {
                 return null;
             }
         }
-
-        public IEnumerable<User> GetAll()
+        private string generateJwtToken(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public User GetById(int id)
-        {
-            throw new NotImplementedException();
+            // generate token that is valid for 7 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }
