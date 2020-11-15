@@ -22,18 +22,19 @@ namespace PP.Web.API.Controllers
 
         //api/Users
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] UserRequestDto userDto)
+        public IActionResult Authenticate([FromBody] UserRequestDto userRequestDto)
         {
 
-            if (userDto == null)
+            if (userRequestDto == null)
             {
                 return BadRequest("Username or password is incorrect");
             }
-            if (userDto.Name == "Max" && userDto.Password == "Testing")
+            UserReplyDto user = _userService.Authenticate(userRequestDto);
+            if (user == null)
             {
-                return Ok(userDto);
+                return BadRequest("Username or password is incorrect");
             }
-            return BadRequest("Username or password is incorrect");
+            return Ok(user);
         }
     }
 }
