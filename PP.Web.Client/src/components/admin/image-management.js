@@ -10,7 +10,9 @@ export default class ImageManagement extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            images: []
+            images: [],
+            editImageId: 0,
+            editClicked: false
         }
     }
 
@@ -26,12 +28,11 @@ export default class ImageManagement extends React.PureComponent {
             .catch(console.log)
     }
     render() {
-        { console.log(this.state.images)}
         if (this.state.images.length === 0) {
             return (<div><h1>Images not found</h1></div>);
         }
 
-        const imagesList = this.state.images.map((element) => {
+        const imagesList = this.state.images.map((element, index) => {
             return (
                 <tr key={element.imageId}>
                     <td>{element.name}</td>
@@ -39,6 +40,8 @@ export default class ImageManagement extends React.PureComponent {
                     <td>{element.addDate}</td>
                     <td>{element.uri}</td>
                     <td>{element.likes}</td>
+                    <td><button onClick={() => this.setState({ editClicked: !this.state.editClicked, editImageId: index })}>edit</button></td>
+                    {console.log(this.state)}
                 </tr>
             );
         });
@@ -58,7 +61,8 @@ export default class ImageManagement extends React.PureComponent {
                             </tr>
                         </thead>
                         <tbody>
-                            {imagesList}
+                            {!this.state.editClicked && imagesList}
+                            {this.state.editClicked && imagesList[this.state.editImageId]}
                         </tbody>
                     </table>
                 </div>
