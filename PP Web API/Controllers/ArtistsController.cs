@@ -54,8 +54,7 @@ namespace PP.Web.API.Controllers
 
             return Ok(_mapper.Map<ArtistReadDto>(artist));
         }
-
-        //TODO block CreateArtist with authenticate
+        
         //api/artists
         [HttpPost]
         public ActionResult<ArtistReadDto> CreateArtist(ArtistCreateDto artistCreateDto)
@@ -69,7 +68,6 @@ namespace PP.Web.API.Controllers
             return CreatedAtRoute(nameof(GetArtistId), new { Id = artistReadDto.ArtistId }, artistReadDto);
         }
 
-        //TODO block UpdateArtist with authenticate
         //api/Artists/{id}
         [HttpPut("{id}")]
         public ActionResult UpdateArtist(int id, ArtistUpdateDto artistUpdateDto)
@@ -89,7 +87,6 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
-        //TODO block PartialArtistUpdate with authenticate
         //api/Artists/{id}
         [HttpPatch("{id}")]
         public ActionResult PartialArtistUpdate(int id, JsonPatchDocument<ArtistUpdateDto> patchDoc)
@@ -117,7 +114,6 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
-        //TODO block DeleteArtist with authenticate
         //api/Artists/{id}
         [HttpDelete("{id}")]
         public ActionResult DeleteArtist(int id)
