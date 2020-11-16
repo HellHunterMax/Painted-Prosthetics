@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PP.Web.API.Data;
@@ -9,6 +10,7 @@ using PP.Web.API.Model;
 
 namespace PP.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ImagesController : ControllerBase
@@ -23,6 +25,7 @@ namespace PP.Web.API.Controllers
         }
 
         //Get api/images
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<ImageReadDto>> GetAllImages()
         {
@@ -32,6 +35,7 @@ namespace PP.Web.API.Controllers
         }
 
         //Get api/images/id
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetImageId")]
         public ActionResult<ImageReadDto> GetImageId(int id)
         {

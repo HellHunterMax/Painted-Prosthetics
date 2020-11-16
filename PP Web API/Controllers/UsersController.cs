@@ -20,7 +20,7 @@ namespace PP.Web.API.Controllers
             _userService = userService;
         }
 
-        //api/Users
+        //api/Users/authenticate
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserRequestDto userRequestDto)
         {
