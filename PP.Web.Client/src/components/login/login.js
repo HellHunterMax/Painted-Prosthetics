@@ -35,12 +35,11 @@ export default class Login extends React.Component {
         if (username && password)
         {
             userService.login(username, password)
-                .then(console.log(localStorage.getItem("user")))
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
         }
-}
+    }
 
     render() {
         const { loggingIn } = this.props;

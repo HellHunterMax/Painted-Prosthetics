@@ -28,6 +28,7 @@ export default class Admin extends React.PureComponent {
 
     render() {
         return (
+            
             <div className="home-container">
                 <h1 className="title">Admin Controls</h1>
                 <div className="admin-container">

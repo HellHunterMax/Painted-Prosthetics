@@ -1,4 +1,5 @@
-﻿import * as React from 'react';
+﻿import * as React from "react";
+import ImageEdit from "./image-edit";
 import { Config } from "../../helpers/config";
 
 //TODO link the ImageManagement up
@@ -41,7 +42,6 @@ export default class ImageManagement extends React.PureComponent {
                     <td>{element.uri}</td>
                     <td>{element.likes}</td>
                     <td><button onClick={() => this.setState({ editClicked: !this.state.editClicked, editImageId: index })}>edit</button></td>
-                    {console.log(this.state)}
                 </tr>
             );
         });
@@ -50,23 +50,30 @@ export default class ImageManagement extends React.PureComponent {
             <div className=''>
                 <div className='text-container'>
                     <h1 className='title'>Image Management</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>ArtistId</th>
-                                <th>AddDate</th>
-                                <th>Uri</th>
-                                <th>likes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {!this.state.editClicked && imagesList}
-                            {this.state.editClicked && imagesList[this.state.editImageId]}
-                        </tbody>
-                    </table>
+                    {!this.state.editClicked && imageTable(imagesList)}
+                    {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} />}
+                    
                 </div>
             </div>
         )
     }
+}
+
+function imageTable(imagesList) {
+    return (
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ArtistId</th>
+                <th>AddDate</th>
+                <th>Uri</th>
+                <th>likes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {imagesList}
+        </tbody>
+        </table>
+        )
 }
