@@ -1,5 +1,6 @@
 ﻿import * as React from "react";
 import ImageEdit from "./image-edit";
+import ImageAdd from "./image-add";
 import { Config } from "../../helpers/config";
 
 //TODO link the ImageManagement up
@@ -51,9 +52,10 @@ export default class ImageManagement extends React.PureComponent {
             <div className=''>
                 <div className='text-container'>
                     <h1 className='title'>Image Management</h1>
-                    {!this.state.editClicked && imageTable(imagesList)}
-                    {!this.state.editClicked && <button onClick={() => this.setState({ editClicked: !this.state.addClicked })}>Add</button>  }
+                    {!(this.state.editClicked || this.state.addClicked) && imageTable(imagesList)}
+                    {!(this.state.editClicked || this.state.addClicked) && <button onClick={() => this.setState({ addClicked: !this.state.addClicked })}>Add</button>  }
                     {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} />}
+                    {this.state.addClicked && <ImageAdd />}
                     
                 </div>
             </div>
