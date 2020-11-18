@@ -13,7 +13,8 @@ export default class ImageManagement extends React.PureComponent {
         this.state = {
             images: [],
             editImageId: 0,
-            editClicked: false
+            editClicked: false,
+            addClicked: false
         }
     }
 
@@ -51,6 +52,7 @@ export default class ImageManagement extends React.PureComponent {
                 <div className='text-container'>
                     <h1 className='title'>Image Management</h1>
                     {!this.state.editClicked && imageTable(imagesList)}
+                    {!this.state.editClicked && <button onClick={() => this.setState({ editClicked: !this.state.addClicked })}>Add</button>  }
                     {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} />}
                     
                 </div>
