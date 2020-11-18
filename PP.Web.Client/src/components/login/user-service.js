@@ -1,31 +1,35 @@
 ﻿import { Config } from '../../helpers/config';
 
-export const userService = {
+export const UserService = {
     login,
     logout
 };
 
-function login(name, password) {
+async function login(name, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, password })
     };
 
-    return fetch(Config.apiUrl + '/api/users/authenticate', requestOptions)
-        .then(user => {
-            console.log("request succeded.")
-            // login successful if there's a jwt token in the response
-            if (user) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-                console.log("placed user into localstorage.")
-            }
-            else {
-                console.log("did not place user in localstorage.")
-            }
-            return user;
-        });
+        
+
+    
+
+    var response = await fetch(Config.apiUrl + '/api/users/authenticate', requestOptions).then(body);
+
+    var body = await response.json(); // .json() is asynchronous and therefore must be awaited
+
+    if (body) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', body);
+        console.log("placed user into localstorage.");
+    }
+    else {
+        console.log("did not place user in localstorage.")
+    }
+
+    return body
 }
 
 function logout() {

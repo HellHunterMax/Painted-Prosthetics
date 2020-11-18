@@ -52,7 +52,7 @@ namespace PP.Web.Api
                 options.AddDefaultPolicy(
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader();
+                                      builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
                                   });
             });
             // configure jwt authentication

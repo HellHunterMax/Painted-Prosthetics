@@ -27,7 +27,10 @@ export default class Admin extends React.PureComponent {
     }
 
     render() {
+        let user = JSON.parse(localStorage.getItem('user'));
+        console.log(user)
         return (
+
             
             <div className="home-container">
                 <h1 className="title">Admin Controls</h1>

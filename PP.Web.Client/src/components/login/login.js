@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { userService } from "./user-service";
+import { UserService } from "./user-service";
 //import { connect } from 'react-redux';
 
 //import { userActions } from '../_actions';
@@ -9,7 +9,7 @@ export default class Login extends React.Component {
         super(props);
 
         // reset login status
-        userService.logout();
+        UserService.logout();
 
         this.state = {
             username: "",
@@ -34,7 +34,7 @@ export default class Login extends React.Component {
         const { username, password} = this.state;
         if (username && password)
         {
-            userService.login(username, password)
+            UserService.login(username, password)
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
