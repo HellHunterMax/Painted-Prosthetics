@@ -34,9 +34,9 @@ export default class ImageAdd extends React.PureComponent {
                     this.setState({ errorMessage: err.message });
                 });
         }
-        
     }
 
+    //TODO add completed MSG!
     render() {
         const { name, artistId, uri, submitted, errorMessage } = this.state;
         return (
@@ -59,7 +59,7 @@ export default class ImageAdd extends React.PureComponent {
                         <div className="help-block">URL is required</div>
                     }
                     <div>
-                        <button className="btn btn-primary" onClick={this.handleSubmit}>Change!</button>
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Upload!</button>
                     </div>
                 {errorMessage &&
                     <div className="help-block">{errorMessage}</div>

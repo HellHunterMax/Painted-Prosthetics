@@ -2,7 +2,8 @@
 
 export const ImageService = {
     post,
-    put
+    put,
+    _delete
 };
 
 function post(name, artistId, uri) {
@@ -17,12 +18,22 @@ function post(name, artistId, uri) {
 }
 
 function put(name, artistId, uri, imageId) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem("user"));
     const requestOptions = {
         method: 'PUT',
-        headers: {'Authorization': 'Bearer ' + user.token,  'Content-Type': 'application/json' },
+        headers: {"Authorization": "Bearer " + user.token,  "Content-Type": "application/json" },
         body: JSON.stringify({ name, artistId, uri })
     };
 
-    return fetch(Config.apiUrl + '/api/images/' + imageId, requestOptions);
+    return fetch(Config.apiUrl + "/api/images/" + imageId, requestOptions);
+}
+
+function _delete(imageId) {
+    let user = JSON.parse(localStorage.getItem("user"));
+    const requestOptions = {
+        method: "DELETE",
+        headers: { "Authorization": "Bearer " + user.token, "Content-Type": "application/json" },
+    };
+
+    return fetch(Config.apiUrl + "/api/images/" + imageId, requestOptions);
 }

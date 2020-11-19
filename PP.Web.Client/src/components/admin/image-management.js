@@ -1,12 +1,8 @@
 ﻿import * as React from "react";
 import ImageEdit from "./image-edit";
 import ImageAdd from "./image-add";
+import ImageDelete from "./image-delete";
 import { Config } from "../../helpers/config";
-
-//TODO link the ImageManagement up
-//TODO create form
-//TODO create a fetch
-//TODO or create different page to change single image or make possible on this page.
 
 export default class ImageManagement extends React.PureComponent {
     constructor(props) {
@@ -15,11 +11,29 @@ export default class ImageManagement extends React.PureComponent {
             images: [],
             editImageId: 0,
             editClicked: false,
-            addClicked: false
+            addClicked: false,
+            deleteClicked: false
         }
+
+        this.deleteClicked = this.deleteClicked.bind(this);
+        this.getImages = this.getImages.bind(this);
     }
 
-    componentDidMount() {
+    deleteClicked() {
+        this.setState({ deleteClicked: !this.state.deleteClicked });
+        this.getImages()
+    }
+
+    addClickedAndRefresh() {
+        this.setState({ addClicked: !this.state.addClicked });
+        this.getImages()
+    }
+    editClickedAndRefresh() {
+        this.setState({ editClicked: !this.state.editClicked });
+        this.getImages();
+    }
+
+    getImages() {
         fetch(Config.apiUrl + "/api/images",
             {
                 method: "GET"
@@ -29,6 +43,10 @@ export default class ImageManagement extends React.PureComponent {
                 this.setState({ images: data });
             })
             .catch(console.log)
+    }
+
+    componentDidMount() {
+        this.getImages()
     }
     render() {
         if (this.state.images.length === 0) {
@@ -44,6 +62,7 @@ export default class ImageManagement extends React.PureComponent {
                     <td>{element.uri}</td>
                     <td>{element.likes}</td>
                     <td><button onClick={() => this.setState({ editClicked: !this.state.editClicked, editImageId: index })}>edit</button></td>
+                    <td><button onClick={() => this.setState({ deleteClicked: true, editImageId: index })}>Delete</button></td>
                 </tr>
             );
         });
@@ -52,16 +71,20 @@ export default class ImageManagement extends React.PureComponent {
             <div className=''>
                 <div className='text-container'>
                     <h1 className='title'>Image Management</h1>
-                    {!(this.state.editClicked || this.state.addClicked) && imageTable(imagesList)}
-                    {!(this.state.editClicked || this.state.addClicked) && <button onClick={() => this.setState({ addClicked: !this.state.addClicked })}>Add</button>  }
+                    {this.state.editClicked && <button onClick={() => this.editClickedAndRefresh()} >Back</button>}
+                    {this.state.addClicked && <button onClick={() => this.addClickedAndRefresh()}>Back</button>}
+                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && imageTable(imagesList)}
+                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && <button onClick={() => this.setState({ addClicked: !this.state.addClicked })}>Add</button>  }
                     {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} />}
                     {this.state.addClicked && <ImageAdd />}
+                    {this.state.deleteClicked && <ImageDelete image={this.state.images[this.state.editImageId]} deleteClicked={this.deleteClicked} />}
                     
                 </div>
             </div>
         )
     }
 }
+
 
 function imageTable(imagesList) {
     return (

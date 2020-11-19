@@ -25,7 +25,6 @@ export default class ImageEdit extends React.PureComponent {
             uri: this.props.image.uri,
             imageId: this.props.image.imageId
         });
-        {console.log(this.state)}
     }
 
     handleChange(e) {
@@ -49,6 +48,7 @@ export default class ImageEdit extends React.PureComponent {
         
     }
 
+    //TODO show uploaded MSG!
     render() {
         const { name, artistId, uri, submitted, errorMessage } = this.state;
         return (
