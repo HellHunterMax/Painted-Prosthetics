@@ -44,8 +44,8 @@ export default class ImageEdit extends React.PureComponent {
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
-        }
-        
+        };
+        this.props.changeClicked();
     }
 
     //TODO show uploaded MSG!

@@ -15,22 +15,40 @@ export default class ImageManagement extends React.PureComponent {
             deleteClicked: false
         }
 
-        this.deleteClicked = this.deleteClicked.bind(this);
+        this.handleDeleteClicked = this.handleDeleteClicked.bind(this);
+        this.handleAddClicked = this.handleAddClicked.bind(this);
+        this.handleEditClicked = this.handleEditClicked.bind(this);
         this.getImages = this.getImages.bind(this);
     }
 
-    deleteClicked() {
-        this.setState({ deleteClicked: !this.state.deleteClicked });
-        this.getImages()
+    imageTable(imagesList) {
+        this.getImages();
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>ArtistId</th>
+                        <th>AddDate</th>
+                        <th>Uri</th>
+                        <th>likes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {imagesList}
+                </tbody>
+            </table>
+        )
     }
 
-    addClickedAndRefresh() {
-        this.setState({ addClicked: !this.state.addClicked });
-        this.getImages()
+    handleDeleteClicked() {
+        this.setState({ deleteClicked: !this.state.deleteClicked });
     }
-    editClickedAndRefresh() {
+    handleAddClicked() {
+        this.setState({ addClicked: !this.state.addClicked });
+    }
+    handleEditClicked() {
         this.setState({ editClicked: !this.state.editClicked });
-        this.getImages();
     }
 
     getImages() {
@@ -71,36 +89,16 @@ export default class ImageManagement extends React.PureComponent {
             <div className=''>
                 <div className='text-container'>
                     <h1 className='title'>Image Management</h1>
-                    {this.state.editClicked && <button onClick={() => this.editClickedAndRefresh()} >Back</button>}
-                    {this.state.addClicked && <button onClick={() => this.addClickedAndRefresh()}>Back</button>}
-                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && imageTable(imagesList)}
-                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && <button onClick={() => this.setState({ addClicked: !this.state.addClicked })}>Add</button>  }
-                    {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} />}
-                    {this.state.addClicked && <ImageAdd />}
-                    {this.state.deleteClicked && <ImageDelete image={this.state.images[this.state.editImageId]} deleteClicked={this.deleteClicked} />}
+                    {this.state.editClicked && <button onClick={this.handleEditClicked} >Back</button>}
+                    {this.state.addClicked && <button onClick={this.handleAddClicked}>Back</button>}
+                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && this.imageTable(imagesList)}
+                    {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && <button onClick={this.handleAddClicked}>Add</button>  }
+                    {this.state.editClicked && <ImageEdit image={this.state.images[this.state.editImageId]} changeClicked={this.handleEditClicked} />}
+                    {this.state.addClicked && <ImageAdd uploadClicked={this.handleAddClicked}/>}
+                    {this.state.deleteClicked && <ImageDelete image={this.state.images[this.state.editImageId]} deleteClicked={this.handleDeleteClicked} />}
                     
                 </div>
             </div>
         )
     }
-}
-
-
-function imageTable(imagesList) {
-    return (
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>ArtistId</th>
-                <th>AddDate</th>
-                <th>Uri</th>
-                <th>likes</th>
-            </tr>
-        </thead>
-        <tbody>
-            {imagesList}
-        </tbody>
-        </table>
-        )
 }

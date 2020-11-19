@@ -33,7 +33,8 @@ export default class ImageAdd extends React.PureComponent {
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
-        }
+        };
+        this.props.uploadClicked();
     }
 
     //TODO add completed MSG!
