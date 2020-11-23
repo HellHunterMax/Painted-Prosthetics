@@ -27,15 +27,18 @@ export default class ArtistAdd extends React.PureComponent {
 
         this.setState({ submitted: true });
 
-        const { name, bio, webiste, email } = this.state;
-        if (name && bio && webiste && email) {
+        const { name, bio, website, email } = this.state;
+        if (name && bio && website && email) {
             console.log("Sending API Call POST");
-            ArtistService.post(name, bio, webiste, email)
+            ArtistService.post(name, bio, website, email)
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
-        };
-        this.props.uploadClicked();
+            this.props.uploadClicked();
+        }
+        else {
+            console.log("Missing name or bio or website or email.")
+        }
     }
 
     //TODO add completed MSG to artistUpload

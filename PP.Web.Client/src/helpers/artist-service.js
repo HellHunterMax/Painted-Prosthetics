@@ -12,7 +12,7 @@ function get() {
         method: "GET"
     };
 
-    return fetch(Config.apiUrl + "/api/images", requestOptions);
+    return fetch(Config.apiUrl + "/api/artists", requestOptions);
 }
 
 function post(name, bio, website, email) {

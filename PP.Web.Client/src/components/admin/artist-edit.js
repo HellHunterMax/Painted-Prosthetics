@@ -41,7 +41,7 @@ export default class ArtistEdit extends React.PureComponent {
         const { name, bio, website, email, artistId } = this.state;
         if (name && artistId && bio && website && email) {
             console.log("Sending API Call PUT");
-            ImageService.put(name, bio, website, email, artistId)
+            ArtistService.put(name, bio, website, email, artistId)
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });

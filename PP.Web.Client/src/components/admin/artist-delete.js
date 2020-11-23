@@ -27,7 +27,7 @@ export default class ArtistDelete extends React.PureComponent {
     }
     componentDidMount() {
         this.setState({
-            artistId: this.props.image.artistId,
+            artistId: this.props.artist.artistId,
             artist: this.props.artist
         });
     }

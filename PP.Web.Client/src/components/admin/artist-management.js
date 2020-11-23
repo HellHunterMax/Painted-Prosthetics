@@ -53,7 +53,7 @@ export default class ArtistManagement extends React.PureComponent {
     }
 
     getArtists() {
-        ArtistService.get
+        ArtistService.get()
             .then(res => res.json())
             .then((data) => {
                 this.setState({ artists: data });
@@ -75,7 +75,7 @@ export default class ArtistManagement extends React.PureComponent {
                     <td>{element.artistId}</td>
                     <td>{element.name}</td>
                     <td>{element.bio}</td>
-                    <td>{element.webiste}</td>
+                    <td>{element.website}</td>
                     <td>{element.email}</td>
                     <td><button onClick={() => this.setState({ editClicked: !this.state.editClicked, editArtistId: index })}>edit</button></td>
                     <td><button onClick={() => this.setState({ deleteClicked: true, editArtistId: index })}>Delete</button></td>
@@ -91,7 +91,7 @@ export default class ArtistManagement extends React.PureComponent {
                     {this.state.addClicked && <button onClick={this.handleAddClicked}>Back</button>}
                     {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && this.artistsTable(artistsList)}
                     {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && <button onClick={this.handleAddClicked}>Add</button>}
-                    {this.state.editClicked && <ArtistEdit artist={this.state.artist[this.state.editArtistId]} changeClicked={this.handleEditClicked} />}
+                    {this.state.editClicked && <ArtistEdit artist={this.state.artists[this.state.editArtistId]} changeClicked={this.handleEditClicked} />}
                     {this.state.addClicked && <ArtistAdd uploadClicked={this.handleAddClicked} />}
                     {this.state.deleteClicked && <ArtistDelete artist={this.state.artists[this.state.editArtistId]} deleteClicked={this.handleDeleteClicked} />}
 
