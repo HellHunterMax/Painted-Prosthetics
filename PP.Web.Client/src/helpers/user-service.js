@@ -3,7 +3,7 @@
     Token
 }
 
-function IsAuthenticated() {
+function isAuthenticated() {
     return localStorage.getItem('user') ? true : false;
 }
 
