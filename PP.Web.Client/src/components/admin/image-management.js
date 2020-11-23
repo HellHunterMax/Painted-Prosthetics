@@ -18,7 +18,6 @@ export default class ImageManagement extends React.PureComponent {
         this.handleDeleteClicked = this.handleDeleteClicked.bind(this);
         this.handleAddClicked = this.handleAddClicked.bind(this);
         this.handleEditClicked = this.handleEditClicked.bind(this);
-        this.getImages = this.getImages.bind(this);
     }
 
     imageTable(imagesList) {
@@ -64,7 +63,7 @@ export default class ImageManagement extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.getImages()
+        this.getImages();
     }
     render() {
         if (this.state.images.length === 0) {

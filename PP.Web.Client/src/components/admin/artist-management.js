@@ -19,7 +19,6 @@ export default class ArtistManagement extends React.PureComponent {
         this.handleDeleteClicked = this.handleDeleteClicked.bind(this);
         this.handleAddClicked = this.handleAddClicked.bind(this);
         this.handleEditClicked = this.handleEditClicked.bind(this);
-        this.getArtists = this.getArtists.bind(this);
     }
 
     artistsTable(artistsList) {
@@ -62,7 +61,7 @@ export default class ArtistManagement extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.getArtists()
+        this.getArtists();
     }
     render() {
         if (this.state.artists.length === 0) {
@@ -91,6 +90,7 @@ export default class ArtistManagement extends React.PureComponent {
                     {this.state.addClicked && <button onClick={this.handleAddClicked}>Back</button>}
                     {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && this.artistsTable(artistsList)}
                     {!(this.state.editClicked || this.state.addClicked || this.state.deleteClicked) && <button onClick={this.handleAddClicked}>Add</button>}
+
                     {this.state.editClicked && <ArtistEdit artist={this.state.artists[this.state.editArtistId]} changeClicked={this.handleEditClicked} />}
                     {this.state.addClicked && <ArtistAdd uploadClicked={this.handleAddClicked} />}
                     {this.state.deleteClicked && <ArtistDelete artist={this.state.artists[this.state.editArtistId]} deleteClicked={this.handleDeleteClicked} />}

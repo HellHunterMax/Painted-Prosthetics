@@ -16,7 +16,7 @@ export default class ImageDelete extends React.PureComponent {
         this.setState({ submitted: true });
 
         const { imageId} = this.state;
-        if (imageId != 0) {
+        if (imageId !== 0) {
             console.log("Sending API Call DELETE");
             ImageService._delete(imageId)
                 .catch(err => {

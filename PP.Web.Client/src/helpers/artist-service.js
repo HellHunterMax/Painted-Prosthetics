@@ -23,7 +23,7 @@ function post(name, bio, website, email) {
         body: JSON.stringify({ name, bio, website, email})
     };
 
-    return fetch(Config.apiUrl + "api/artists", requestOptions);
+    return fetch(Config.apiUrl + "/api/artists", requestOptions);
 }
 
 function put(name, bio, website, email, artistId) {

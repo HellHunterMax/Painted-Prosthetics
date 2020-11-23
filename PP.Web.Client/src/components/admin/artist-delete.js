@@ -16,7 +16,7 @@ export default class ArtistDelete extends React.PureComponent {
         this.setState({ submitted: true });
 
         const { artistId } = this.state;
-        if (artistId != 0) {
+        if (artistId !== 0) {
             console.log("Sending API Call DELETE");
             ArtistService._delete(artistId)
                 .catch(err => {
