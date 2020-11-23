@@ -35,7 +35,7 @@ export default class Admin extends React.PureComponent {
             <div className="home-container">
                 <h1 className="title">Admin Controls</h1>
                 <div className="admin-container">
-                    <div className="floating navigation-container">
+                    <div className="navigation-container">
                         <ul>
                             <li>
                                 <button onClick={this.handleAboutClicked}>About</button>
@@ -51,7 +51,7 @@ export default class Admin extends React.PureComponent {
                             </li>
                         </ul>
                     </div>
-                    <div className="floating route-container">
+                    <div className="admin-control-container">
                         {this.state.aboutClicked && <About />}
                         {this.state.donateClicked && <Donate />}
                         {this.state.imagesClicked && <Images />}

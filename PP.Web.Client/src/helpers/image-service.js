@@ -1,4 +1,4 @@
-﻿import { Config } from './config';
+﻿import { Config } from "./config";
 
 export const ImageService = {
     post,
@@ -7,20 +7,20 @@ export const ImageService = {
 };
 
 function post(name, artistId, uri) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem("user"));
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + user.token, 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Authorization": "Bearer " + user.token, "Content-Type": "application/json" },
         body: JSON.stringify({ name, artistId, uri })
     };
 
-    return fetch(Config.apiUrl + '/api/images/' , requestOptions);
+    return fetch(Config.apiUrl + "/api/images/" , requestOptions);
 }
 
 function put(name, artistId, uri, imageId) {
-    let user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const requestOptions = {
-        method: 'PUT',
+        method: "PUT",
         headers: {"Authorization": "Bearer " + user.token,  "Content-Type": "application/json" },
         body: JSON.stringify({ name, artistId, uri })
     };
@@ -29,7 +29,7 @@ function put(name, artistId, uri, imageId) {
 }
 
 function _delete(imageId) {
-    let user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
     const requestOptions = {
         method: "DELETE",
         headers: { "Authorization": "Bearer " + user.token, "Content-Type": "application/json" },
