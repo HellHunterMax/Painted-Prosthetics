@@ -8,11 +8,6 @@ import { Redirect } from "react-router-dom";
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-
-        // reset login status
-        UserService.logout();
-        this.props.loginOrOut();
-
         this.state = {
             username: "",
             password: "",
@@ -22,6 +17,14 @@ export default class Login extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogout();
+    }
+
+    handleLogout() {
+        if (this.props.isAuthenticated) {
+            UserService.logout();
+            this.props.loginOrOut();
+        }
     }
 
     handleChange(e) {
@@ -42,7 +45,7 @@ export default class Login extends React.Component {
                 });
             //TODO if logged in redirect to admin.
             //TODO set state to logged in
-                this.props.loginOrOut();
+            this.props.loginOrOut();
         }
     }
 

@@ -20,13 +20,15 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAuthenticated: UserService.IsAuthenticated(),
+            isAuthenticated: false
         };
-        this.loginChange = this.loginChange.bind(this);
+
+        this.state.isAuthenticated = UserService.IsAuthenticated();
     }
 
-    loginChange() {
+    loginChange = () => {
         this.setState({ isAuthenticated: !this.state.isAuthenticated });
+        { console.log("User is logged in: " + this.state.isAuthenticated); }
     }
 
     render() {
@@ -42,7 +44,7 @@ export default class App extends React.Component {
                         <Donate />
                     </Route>
                     <Route path="/login">
-                        <Login loginOrOut={() => this.loginChange} />
+                            <Login loginOrOut={this.loginChange} isAuthenticated={this.state.isAuthenticated} />
                     </Route>
                     <PrivateRoute exact path="/admin" component={Admin} />
                     <Route path="/artist/:id" component={Artist} />

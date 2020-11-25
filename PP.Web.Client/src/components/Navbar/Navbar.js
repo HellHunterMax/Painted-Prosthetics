@@ -5,7 +5,7 @@ import { UserService } from "../../helpers/user-service";
 import "./navbar.css";
 
 export default class Navbar extends React.PureComponent {
-    state = { clicked: false, isAuthenticated: this.props.isAuthenticated }
+    state = { clicked: false, isAuthenticated: false }
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
@@ -16,7 +16,8 @@ export default class Navbar extends React.PureComponent {
     }
     //TODO Login should change to Logout when logged in.
     render() {
-        let isAuthenticated = this.state.isAuthenticated;
+        let isAuthenticated = this.props.isAuthenticated;
+        this.state.isAuthenticated = isAuthenticated;
         const adminMenuItem = <li>< Link to="/admin" className="nav-links" onClick={this.closeMobileMenu} > Admin </Link></li>
         return (
             <nav className="navbar-items">
