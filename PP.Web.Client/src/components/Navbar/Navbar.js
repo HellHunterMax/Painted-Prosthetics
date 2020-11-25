@@ -1,7 +1,6 @@
 ﻿import * as React from "react";
 import { MenuItems } from "./menu-items";
 import { Link } from "react-router-dom";
-import { UserService } from "../../helpers/user-service";
 import "./navbar.css";
 
 export default class Navbar extends React.PureComponent {
@@ -14,7 +13,7 @@ export default class Navbar extends React.PureComponent {
     closeMobileMenu = () => {
         this.setState({ clicked: false })
     }
-    //TODO Login should change to Logout when logged in.
+
     render() {
         let isAuthenticated = this.props.isAuthenticated;
         this.state.isAuthenticated = isAuthenticated;
