@@ -1,9 +1,9 @@
 ﻿export const UserService = {
-    isAuthenticated,
+    IsAuthenticated,
     Token
 }
 
-function isAuthenticated() {
+function IsAuthenticated() {
     return localStorage.getItem('user') ? true : false;
 }
 
