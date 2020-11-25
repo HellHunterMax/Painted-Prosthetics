@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import { UserService } from "./user-service";
+import { Redirect } from "react-router-dom";
 //import { connect } from 'react-redux';
 
 //import { userActions } from '../_actions';
@@ -10,6 +11,7 @@ export default class Login extends React.Component {
 
         // reset login status
         UserService.logout();
+        this.props.loginOrOut();
 
         this.state = {
             username: "",
@@ -38,6 +40,9 @@ export default class Login extends React.Component {
                 .catch(err => {
                     this.setState({ errorMessage: err.message });
                 });
+            //TODO if logged in redirect to admin.
+            //TODO set state to logged in
+                this.props.loginOrOut();
         }
     }
 

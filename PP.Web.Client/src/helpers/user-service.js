@@ -4,7 +4,9 @@
 }
 
 function IsAuthenticated() {
-    return localStorage.getItem('user') ? true : false;
+    const isThereAUser = localStorage.getItem('user') ? true : false;
+    console.log(isThereAUser);
+    return isThereAUser;
 }
 
 function Token() {

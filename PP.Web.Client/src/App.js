@@ -7,6 +7,7 @@ import About from "./pages/about";
 import Donate from "./pages/donate";
 import Artist from "./pages/artist";
 import Admin from "./pages/admin";
+import { UserService } from "./helpers/user-service";
 import { PrivateRoute } from "./components/private-route";
 import {
     BrowserRouter as Router,
@@ -15,11 +16,24 @@ import {
 } from "react-router-dom";
 import "./app.css";
 
-export default function App() {
-    return (
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isAuthenticated: UserService.IsAuthenticated(),
+        };
+        this.loginChange = this.loginChange.bind(this);
+    }
+
+    loginChange() {
+        this.setState({ isAuthenticated: !this.state.isAuthenticated });
+    }
+
+    render() {
+        return (
         <Router>
             <div className="app">
-                <Navbar />
+                <Navbar isAuthenticated={this.state.isAuthenticated} />
                 <Switch>
                     <Route path="/about">
                         <About />
@@ -28,9 +42,9 @@ export default function App() {
                         <Donate />
                     </Route>
                     <Route path="/login">
-                        <Login />
+                        <Login loginOrOut={() => this.loginChange} />
                     </Route>
-                    <PrivateRoute exact path="/admin" component={Admin}/>
+                    <PrivateRoute exact path="/admin" component={Admin} />
                     <Route path="/artist/:id" component={Artist} />
                     <Route path="/">
                         <Gallery />
@@ -39,5 +53,5 @@ export default function App() {
                 <Footer />
             </div>
         </Router>
-    );
+    )};
 }

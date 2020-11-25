@@ -12,10 +12,6 @@ async function login(name, password) {
         body: JSON.stringify({ name, password })
     };
 
-        
-
-    
-
     var response = await fetch(Config.apiUrl + '/api/users/authenticate', requestOptions).then(body);
 
     var body = await response.json(); // .json() is asynchronous and therefore must be awaited
