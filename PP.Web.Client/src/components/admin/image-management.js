@@ -15,6 +15,7 @@ export default class ImageManagement extends React.PureComponent {
             deleteClicked: false
         }
 
+        this._isMounted = false;
         this.handleDeleteClicked = this.handleDeleteClicked.bind(this);
         this.handleAddClicked = this.handleAddClicked.bind(this);
         this.handleEditClicked = this.handleEditClicked.bind(this);
@@ -57,13 +58,17 @@ export default class ImageManagement extends React.PureComponent {
             })
             .then(res => res.json())
             .then((data) => {
-                this.setState({ images: data });
+                this._isMounted && this.setState({ images: data });
             })
             .catch(console.log)
     }
 
     componentDidMount() {
-        this.getImages();
+        this._isMounted = true;
+        this._isMounted && this.getImages();
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
     render() {
         if (this.state.images.length === 0) {

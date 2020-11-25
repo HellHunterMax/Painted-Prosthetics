@@ -15,6 +15,7 @@ export default class ArtistManagement extends React.PureComponent {
             deleteClicked: false
         }
 
+        this._isMounted = false;
         this.handleDeleteClicked = this.handleDeleteClicked.bind(this);
         this.handleAddClicked = this.handleAddClicked.bind(this);
         this.handleEditClicked = this.handleEditClicked.bind(this);
@@ -54,13 +55,17 @@ export default class ArtistManagement extends React.PureComponent {
         ArtistService.get()
             .then(res => res.json())
             .then((data) => {
-                this.setState({ artists: data });
+                this._isMounted &&this.setState({ artists: data });
             })
             .catch(console.log)
     }
 
     componentDidMount() {
-        this.getArtists();
+        this._isMounted = true;
+        this._isMounted && this.getArtists();
+    }
+    componentWillUnmount() {
+        this._isMounted = false;
     }
     render() {
         if (this.state.artists.length === 0) {
