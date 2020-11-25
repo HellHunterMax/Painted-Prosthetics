@@ -49,7 +49,6 @@ export default class ArtistEdit extends React.PureComponent {
         this.props.changeClicked();
     }
 
-    //TODO show uploaded MSG!
     render() {
         const { name, bio, website, email, submitted, errorMessage } = this.state;
         return (

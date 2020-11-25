@@ -48,7 +48,6 @@ export default class ImageEdit extends React.PureComponent {
         this.props.changeClicked();
     }
 
-    //TODO show uploaded MSG!
     render() {
         const { name, artistId, uri, submitted, errorMessage } = this.state;
         return (

@@ -4,7 +4,6 @@ import ArtistAdd from "./artist-add";
 import ArtistDelete from "./artist-delete";
 import { ArtistService } from "../../helpers/artist-service";
 
-//TODO link the ArtistManagement page up
 export default class ArtistManagement extends React.PureComponent {
     constructor(props) {
         super(props);

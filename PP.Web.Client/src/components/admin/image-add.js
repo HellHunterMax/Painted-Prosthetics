@@ -37,7 +37,6 @@ export default class ImageAdd extends React.PureComponent {
         this.props.uploadClicked();
     }
 
-    //TODO add completed MSG!
     render() {
         const { name, artistId, uri, submitted, errorMessage } = this.state;
         return (

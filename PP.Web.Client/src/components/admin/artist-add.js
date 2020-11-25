@@ -41,7 +41,6 @@ export default class ArtistAdd extends React.PureComponent {
         }
     }
 
-    //TODO add completed MSG to artistUpload
     render() {
         const { name, bio, website, email, submitted, errorMessage } = this.state;
         return (

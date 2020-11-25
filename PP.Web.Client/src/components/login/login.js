@@ -44,7 +44,6 @@ export default class Login extends React.Component {
                     this.setState({ errorMessage: err.message });
                 });
             //TODO if logged in redirect to admin.
-            //TODO set state to logged in
             this.props.loginOrOut();
         }
     }
