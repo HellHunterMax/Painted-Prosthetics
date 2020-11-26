@@ -17,6 +17,7 @@ function get() {
 
 function post(name, bio, website, email) {
     const user = JSON.parse(localStorage.getItem("user"));
+    {console.log(user.token)}
     const requestOptions = {
         method: "POST",
         headers: { "Authorization": "Bearer " + user.token, "Content-Type": "application/json" },

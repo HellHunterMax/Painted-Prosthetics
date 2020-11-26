@@ -18,8 +18,8 @@ async function login(name, password) {
 
     if (body) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', body);
-        console.log("placed user into localstorage.");
+        localStorage.setItem('user', JSON.stringify(body));
+        console.log(JSON.stringify(body));
     }
     else {
         console.log("did not place user in localstorage.")

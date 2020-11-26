@@ -5,7 +5,6 @@
 
 function IsAuthenticated() {
     const isThereAUser = localStorage.getItem('user') ? true : false;
-    console.log(isThereAUser);
     return isThereAUser;
 }
 
