@@ -1,15 +1,23 @@
 ﻿body {
 }
 .image-container {
-    width: 50%;
-    height: 25%;
-    align-self: center;
-    display: flex;
 }
-.galery-image{
-    width:100%;
-    height:100%;
+.gallery-image {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    line-height: 0;
 }
-.gallery-images-container{
-
+.gallery-images-container {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-auto-rows: min-content;
+    width: 100%;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    margin-bottom: 5%;
+    align-items: center;
 }

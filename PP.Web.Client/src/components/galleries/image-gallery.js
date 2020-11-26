@@ -27,7 +27,7 @@ export default class ImageGallery extends React.PureComponent {
     
     render() {
         if (this.state.images.length === 0) {
-            return (<div><h1>Images not found</h1></div>);
+            return (<div><h1>LOADING!</h1></div>);
         }
         
         const imagesList = this.state.images.map( (element) => {
