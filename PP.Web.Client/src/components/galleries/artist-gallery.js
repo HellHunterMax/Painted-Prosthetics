@@ -32,6 +32,7 @@ export default class ArtistGallery extends React.PureComponent {
             <div>
                 <Carousel transitionTime="500" infiniteLoop
                     onClickItem={() => { this.onClickItemEvent() }}
+                    dynamicHeight={true}
                 >
                     {imagesList}
                 </Carousel>

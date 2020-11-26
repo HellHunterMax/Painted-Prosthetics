@@ -34,6 +34,7 @@ export default class Artist extends React.PureComponent {
             <div className="home-container">
                 <div className="text-container">
                     <h1 className="title">Artist Gallery</h1>
+                    <div className="artist-container">
                     <div className="gallery-container">
                         <ArtistGallery images={this.state.artist.images} />
                     </div>
@@ -44,7 +45,8 @@ export default class Artist extends React.PureComponent {
                         <a className="contact-button btn btn--large" href={str1} rel="noopener noreferrer">
                             Contact
                     </a>
-                    </div>
+                        </div>
+                        </div>
                 </div>
             </div>
         )

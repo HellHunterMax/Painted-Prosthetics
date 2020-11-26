@@ -1,13 +1,14 @@
 ﻿body {
 }
-.gallery-container {
-    width: 50%;
-    float: left;
-    margin-top: 70px;
+.artist-container {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-auto-rows: min-content;
 }
-.artist-info {
-    width: 50%;
-    float: right;
+.gallery-container {
+    margin-top: 70px;
 }
 .artistName {
     margin-top:0;
