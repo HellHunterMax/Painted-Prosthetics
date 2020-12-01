@@ -60,7 +60,7 @@ namespace PP.Web.API.Controllers
             var artist = _artistRepository.GetArtist(image.ArtistId);
             if (artist == null)
             {
-                return ValidationProblem("No artist with this number found");
+                return ValidationProblem($"No artist with number {image.ArtistId} found");
             }
 
             _imageRepository.CreateImage(image);
@@ -81,9 +81,11 @@ namespace PP.Web.API.Controllers
             {
                 return NotFound();
             }
-            if (imageUpdateDto == null)
+
+            var artist = _artistRepository.GetArtist(imageUpdateDto.ArtistId);
+            if (artist == null)
             {
-                return ValidationProblem("No artist with this number found");
+                return ValidationProblem($"No artist with number {imageUpdateDto.ArtistId} found");
             }
 
             _mapper.Map(imageUpdateDto, imageFromRepo);
@@ -114,6 +116,13 @@ namespace PP.Web.API.Controllers
             }
 
             _mapper.Map(imageToPatch, imageFromRepo);
+
+            var artist = _artistRepository.GetArtist(imageFromRepo.ArtistId);
+            if (artist == null)
+            {
+                return ValidationProblem($"No artist with number {imageFromRepo.ArtistId} found");
+            }
+
 
             _imageRepository.UpdateImage(imageFromRepo);
             _imageRepository.SaveChanges();
