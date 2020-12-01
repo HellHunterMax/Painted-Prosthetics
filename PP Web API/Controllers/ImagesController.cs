@@ -84,6 +84,10 @@ namespace PP.Web.API.Controllers
             {
                 return NotFound();
             }
+            if (imageUpdateDto == null)
+            {
+                return ValidationProblem("No artist with this number found");
+            }
 
             _mapper.Map(imageUpdateDto, imageFromRepo);
 
