@@ -15,11 +15,13 @@ namespace PP.Web.API.Controllers
     [ApiController]
     public class ImagesController : ControllerBase
     {
+        private readonly IArtistRepository _artistRepository;
         private readonly IImageRepository _imageRepository;
         private readonly IMapper _mapper;
 
-        public ImagesController(IImageRepository imageRepository, IMapper mapper)
+        public ImagesController(IImageRepository imageRepository, IArtistRepository artistRepository, IMapper mapper)
         {
+            _artistRepository = artistRepository;
             _imageRepository = imageRepository;
             _mapper = mapper;
         }
@@ -56,6 +58,13 @@ namespace PP.Web.API.Controllers
         {
             var image = _mapper.Map<Image>(imageCreateDto);
             image.AddDate = DateTime.Now;
+
+            var artist = _artistRepository.GetArtist(image.ArtistId);
+            if (artist == null)
+            {
+                return ValidationProblem("No artist with this number found");
+            }
+
             _imageRepository.CreateImage(image);
             _imageRepository.SaveChanges();
 

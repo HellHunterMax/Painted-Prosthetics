@@ -25,9 +25,13 @@ namespace PP.Web.API.Data
         public Artist GetArtist(int id)
         {
             var artist = _context.Artists.SingleOrDefault(artist => artist.ArtistId == id);
+            if (artist == null)
+            {
+                return artist;
+            }
+
             _context.Entry(artist).Collection(a => a.Images).Load();
 
-            //var artist = _context.Artists.Include(artist => artist.Images).FirstOrDefault(x => x.ArtistId == id);
             return artist;
         }
 
