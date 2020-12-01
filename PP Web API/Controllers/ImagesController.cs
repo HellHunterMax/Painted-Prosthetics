@@ -94,7 +94,6 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
-        //TODO add to Artisttest 
         //PATCH api/Image/{id}
         [HttpPatch("{id}")]
         public ActionResult PartialImageUpdate(int id, JsonPatchDocument<ImageUpdateDto> patchDoc)
