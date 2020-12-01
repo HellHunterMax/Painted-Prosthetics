@@ -33,20 +33,19 @@ export default class Artist extends React.PureComponent {
         return (
             <div className="home-container">
                 <div className="text-container">
-                    <h1 className="title">Artist Gallery</h1>
                     <div className="artist-container">
-                    <div className="gallery-container">
-                        <ArtistGallery images={this.state.artist.images} />
-                    </div>
-                    <div className="artist-info">
-                        <h1 className="artistName">{this.state.artist.name}</h1>
-                        <a className="websiteLink" href={this.state.artist.website}>{this.state.artist.website}</a>
-                        <p className="bio">{this.state.artist.bio}</p>
-                        <a className="contact-button btn btn--large" href={str1} rel="noopener noreferrer">
-                            Contact
+                        <div className="gallery-container">
+                            <ArtistGallery images={this.state.artist.images} />
+                        </div>
+                        <div className="artist-info">
+                            <h1 className="artistName">{this.state.artist.name}</h1>
+                            <a className="websiteLink" href={this.state.artist.website}>{this.state.artist.website}</a>
+                            <p className="bio">{this.state.artist.bio}</p>
+                            <a className="contact-button btn btn--large" href={str1} rel="noopener noreferrer">
+                                Contact
                     </a>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         )
