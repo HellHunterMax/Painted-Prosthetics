@@ -50,8 +50,6 @@ namespace PP.Web.API.Controllers
             return NotFound();
         }
 
-        //TODO create test to see if artist is good.
-        //TODO add to Artisttest CreateImage
         //POST api/images
         [HttpPost]
         public ActionResult<ImageReadDto> CreateImage(ImageCreateDto imageCreateDto)
@@ -73,7 +71,6 @@ namespace PP.Web.API.Controllers
             return CreatedAtRoute(nameof(GetImageId), new { Id = imageReadDto.ImageId }, imageReadDto);
         }
 
-        //TODO add to Artisttest 
         //PUT api/images/{id}
         [HttpPut("{id}")]
         public ActionResult UpDateImage(int id, ImageUpdateDto imageUpdateDto)
