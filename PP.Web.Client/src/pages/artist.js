@@ -1,30 +1,27 @@
-﻿import * as React from 'react';
-import './artist-page.css';
-import ArtistGallery from "../components/ArtistGallery/artistGallery";
-import { config } from "../Helpers/config";
+﻿import * as React from "react";
+import ArtistGallery from "../components/galleries/artist-gallery";
+import { Config } from "../helpers/config.js";
+import "./artist-page.css";
 
-export default class artist extends React.PureComponent {
+export default class Artist extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            Artist: Object,
+            artist: Object,
             isLoading: true
         }
     }
     componentDidMount() {
         let { id } = this.props.match.params;
-        fetch(config.apiUrl + "/api/artists/" + id,
+        fetch(Config.apiUrl + "/api/artists/" + id,
             {
-                method: 'GET'
+                method: "GET"
             })
             .then(res => res.json())
             .then((data) => {
-                this.setState({ Artist: data, isLoading: false });
-                { console.log(data) }
+                this.setState({ artist: data, isLoading: false });
             })
-            .catch(console.log,
-                this.setState({ Artist: { "artistId": 2, "name": "kim", "images": [{ "imageId": 7, "name": "kimpic1", "artistId": 2, "addDate": "2020-01-01T00:00:00", "likes": 1, "uri": "https://picsum.photos/700/400?img=3" }], "bio": "Hello my bio is about me!", "website": "www.youtube.com", "email": "me@me.nl" }, isLoading: false })
-        )
+            .catch(console.log)
     }
 
     render() {
@@ -32,18 +29,18 @@ export default class artist extends React.PureComponent {
             return (<h1>LOADING</h1>
                 )
         }
-        let str1 = "mailto:" + this.state.Artist.email
+        let str1 = "mailto:" + this.state.artist.email
         return (
-            <div className='home-container'>
-                <div className='text-container'>
-                    <h1 className='title'>Artist Gallery</h1>
+            <div className="home-container">
+                <div className="text-container">
+                    <h1 className="title">Artist Gallery</h1>
                     <div className="gallery-container">
-                        <ArtistGallery images={this.state.Artist.images} />
+                        <ArtistGallery images={this.state.artist.images} />
                     </div>
                     <div className="artist-info">
-                        <h1 className="artistName">{this.state.Artist.name}</h1>
-                        <a className="websiteLink" href={this.state.Artist.website}>{this.state.Artist.website}</a>
-                        <p className="bio">{this.state.Artist.bio}</p>
+                        <h1 className="artistName">{this.state.artist.name}</h1>
+                        <a className="websiteLink" href={this.state.artist.website}>{this.state.artist.website}</a>
+                        <p className="bio">{this.state.artist.bio}</p>
                         <a className="contact-button btn btn--large" href={str1} rel="noopener noreferrer">
                             Contact
                     </a>
@@ -52,8 +49,4 @@ export default class artist extends React.PureComponent {
             </div>
         )
     }
-}
-
-function test () {
-    
 }

@@ -1,9 +1,8 @@
 ﻿import * as React from "react";
-import { MenuItems } from "./menu-items";
+import { ManagementItems } from "./management-items";
 import { Link } from "react-router-dom";
-import "./navbar.css";
 
-export default class Navbar extends React.PureComponent {
+export default class Navigation extends React.PureComponent {
     state = { clicked: false }
 
     handleClick = () => {
@@ -13,18 +12,12 @@ export default class Navbar extends React.PureComponent {
     closeMobileMenu = () => {
         this.setState({ clicked: false })
     }
-    //TODO Login should change to Logout when logged in.
+
     render() {
         return (
-            <nav className="navbar-items">
-                <h1 className="navbar-logo">
-                    <img className="Logo" src="/PPLogo.png" alt="" />
-                </h1>
-                <div className="menu-icon" onClick={this.handleClick}>
-                    <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
-                </div>
-                <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
-                    {MenuItems.map((item, index) => {
+            <nav className="admin-items">
+                <ul className={this.state.clicked ? "admin-menu active" : "admin-menu"}>
+                    {ManagementItems.map((item, index) => {
                         return (
                             <li key={index}>
                                 <Link to={item.url}

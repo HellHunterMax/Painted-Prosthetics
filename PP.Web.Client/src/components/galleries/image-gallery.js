@@ -1,9 +1,9 @@
 import * as React from "react";
-import "./ImageGallery.css";
-import { config } from "../../Helpers/config";
-import ImagePart from "./Image-Part";
+import ImagePart from "./image-part";
+import { Config } from "../../helpers/config";
+import "./image-gallery.css";
 
-export default class ImageGallery extends React.Component {
+export default class ImageGallery extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,15 +13,14 @@ export default class ImageGallery extends React.Component {
 
     componentDidMount()
     {
-        fetch(config.apiUrl + "/api/images",
+        fetch(Config.apiUrl + "/api/images",
             {
-                method: 'GET'
+                method: "GET"
             })
             .then(res => res.json())
         .then((data) =>
         {
             this.setState({ images: data });
-            { console.log(data) }
         })
         .catch(console.log)
     }
@@ -31,7 +30,7 @@ export default class ImageGallery extends React.Component {
             return (<div><h1>Images not found</h1></div>);
         }
         
-        const images_list = this.state.images.map( (element) => {
+        const imagesList = this.state.images.map( (element) => {
             return (
                 <div key={element.imageId}>
                     <ImagePart image={element} />
@@ -41,7 +40,7 @@ export default class ImageGallery extends React.Component {
         return (
             <div>
                 <div className="gallery-images-container">
-                    {images_list}
+                    {imagesList}
                 </div>
             </div>
         )

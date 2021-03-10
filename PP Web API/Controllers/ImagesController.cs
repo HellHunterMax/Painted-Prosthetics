@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PP.Web.API.Data;
@@ -9,6 +10,7 @@ using PP.Web.API.Model;
 
 namespace PP.Web.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ImagesController : ControllerBase
@@ -23,6 +25,7 @@ namespace PP.Web.API.Controllers
         }
 
         //Get api/images
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<ImageReadDto>> GetAllImages()
         {
@@ -32,6 +35,7 @@ namespace PP.Web.API.Controllers
         }
 
         //Get api/images/id
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetImageId")]
         public ActionResult<ImageReadDto> GetImageId(int id)
         {
@@ -44,6 +48,8 @@ namespace PP.Web.API.Controllers
             return NotFound();
         }
 
+        //TODO create test to see if artist is good.
+        //TODO add to Artisttest CreateImage
         //POST api/images
         [HttpPost]
         public ActionResult<ImageReadDto> CreateImage(ImageCreateDto imageCreateDto)
@@ -58,6 +64,7 @@ namespace PP.Web.API.Controllers
             return CreatedAtRoute(nameof(GetImageId), new { Id = imageReadDto.ImageId }, imageReadDto);
         }
 
+        //TODO add to Artisttest 
         //PUT api/images/{id}
         [HttpPut("{id}")]
         public ActionResult UpDateImage(int id, ImageUpdateDto imageUpdateDto)
@@ -77,6 +84,7 @@ namespace PP.Web.API.Controllers
             return NoContent();
         }
 
+        //TODO add to Artisttest 
         //PATCH api/Image/{id}
         [HttpPatch("{id}")]
         public ActionResult PartialImageUpdate(int id, JsonPatchDocument<ImageUpdateDto> patchDoc)

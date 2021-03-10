@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using PP.Web.API.Model;
 namespace PP.Web.API.Controllers
 {
     //api/artists
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ArtistsController : ControllerBase
@@ -27,6 +29,7 @@ namespace PP.Web.API.Controllers
         }
 
         //api/artists
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<ArtistReadDto>> GetAllArtists()
         {
@@ -38,6 +41,7 @@ namespace PP.Web.API.Controllers
         }
 
         //api/artists/{id}
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetArtistId")]
         public ActionResult<ArtistReadDto> GetArtistId(int id)
         {
@@ -50,7 +54,7 @@ namespace PP.Web.API.Controllers
 
             return Ok(_mapper.Map<ArtistReadDto>(artist));
         }
-
+        
         //api/artists
         [HttpPost]
         public ActionResult<ArtistReadDto> CreateArtist(ArtistCreateDto artistCreateDto)
